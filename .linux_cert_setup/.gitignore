@@ -183,6 +183,6 @@ UpgradeLog*.htm
 FakesAssemblies/
 /packages
 
-/xCourse/xCourse/node_modules*
+/CSC4330ProjectGroupA1/CSC4330ProjectGroupA1/node_modules*
 
-/xCourse/xCourse/Migrations*
+/CSC4330ProjectGroupA1/CSC4330ProjectGroupA1/Migrations*

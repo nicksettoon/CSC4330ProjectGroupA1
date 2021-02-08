@@ -1,17 +1,21 @@
 #!/bin/bash
 
 echo '##==========INSTALLING DOTNET DEV CA/CERT==========##'
+pwd
 
 sudo apt-get install libnss3-tools
 
-TMP_PATH=/var/tmp/localhost-dev-cert
-if [ ! -d $TMP_PATH ]; then
-    mkdir $TMP_PATH
+SETUP_PTH=$HOME/.devcerts/dotnet
+if [ ! -d $SETUP_PTH ]; then
+    mkdir -p $SETUP_PTH
+    if [ $? -eq 1 ]; then
+        exit
+    fi
 fi
 
-KEYFILE=$TMP_PATH/dotnet-devcert.key
-CRTFILE=$TMP_PATH/dotnet-devcert.crt
-PFXFILE=$TMP_PATH/dotnet-devcert.pfx
+KEYFILE=$SETUP_PTH/dotnet-devcert.key
+CRTFILE=$SETUP_PTH/dotnet-devcert.crt
+PFXFILE=$SETUP_PTH/dotnet-devcert.pfx
 
 NSSDB_PATHS=(
     "$HOME/.pki/nssdb"
@@ -19,7 +23,7 @@ NSSDB_PATHS=(
 #    "$HOME/snap/postman/current/.pki/nssdb"
 )
 
-CONF_PATH=$TMP_PATH/localhost.conf
+CONF_PATH=$SETUP_PTH/localhost.conf
 cat >> $CONF_PATH <<EOF
 [req]
 prompt                  = no
@@ -44,6 +48,7 @@ subjectAltName          = critical, @alt_names
 
 [alt_names]
 DNS.1                   = localhost
+DNS.2                   = 127.0.0.1
 EOF
 
 function configure_nssdb() {
@@ -51,9 +56,22 @@ function configure_nssdb() {
     certutil -d sql:$1 -D -n dotnet-devcert
     certutil -d sql:$1 -A -t "CP,," -n dotnet-devcert -i $CRTFILE
 }
+function user_secrets(){
+    dotnet user-secrets init
+    if [ "$PASSWD" != "" ]; then
+        dotnet user-secrets set "Kestrel:Certificates:Development:Password" "$PASSWD"
+    else
+        echo "don't have access to cert password"
+        exit
+    fi
+}
 
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $KEYFILE -out $CRTFILE -config $CONF_PATH --passout pass:
-openssl pkcs12 -export -out $PFXFILE -inkey $KEYFILE -in $CRTFILE --passout pass:
+echo 'Please enter the password you  would like to use for the certificate.'
+read -s PASSWD
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $KEYFILE -out $CRTFILE -config $CONF_PATH --passout pass:$PASSWD
+
+openssl pkcs12 -export -out $PFXFILE -inkey $KEYFILE -in $CRTFILE --passout pass:$PASSWD
 
 for NSSDB in ${NSSDB_PATHS[@]}; do
     if [ -d "$NSSDB" ]; then
@@ -65,5 +83,14 @@ sudo rm /etc/ssl/certs/dotnet-devcert.pem
 sudo cp $CRTFILE "/usr/local/share/ca-certificates"
 sudo update-ca-certificates
 
-dotnet dev-certs https --clean --import $PFXFILE -p ""
-rm -R $TMP_PATH
+user_secrets
+
+if [ "$PASSWD" != "" ]; then
+    dotnet dev-certs https --clean --import $PFXFILE -p $PASSWD
+    dotnet dev-certs https -ep $HOME/.aspnet/https/dowling.pfx -p $PASSWD
+    else
+        echo "don't have access to cert password"
+        exit
+fi
+
+# rm -R $SETUP_PTH

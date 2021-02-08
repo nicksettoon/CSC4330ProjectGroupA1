@@ -1,6 +1,6 @@
 using System;
 
-namespace CSC4330_project_groupA1.Models
+namespace DowlingBikes.Models
 {
     public class ErrorViewModel
     {

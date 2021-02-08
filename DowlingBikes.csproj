@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>CSC4330_project_groupA1</RootNamespace>
   </PropertyGroup>
 
 </Project>

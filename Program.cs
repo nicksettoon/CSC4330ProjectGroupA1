@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CSC4330_project_groupA1
+namespace DowlingBikes
 {
     public class Program
     {

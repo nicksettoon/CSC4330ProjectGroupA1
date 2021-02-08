@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:25826",
-      "sslPort": 44354
+      "applicationUrl": "http://localhost:6022",
+      "sslPort": 44324
     }
   },
   "profiles": {
@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "CSC4330_project_groupA1": {
+    "DowlingBikes": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

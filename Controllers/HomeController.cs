@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CSC4330_project_groupA1.Models;
+using DowlingBikes.Models;
 
-namespace CSC4330_project_groupA1.Controllers
+namespace DowlingBikes.Controllers
 {
     public class HomeController : Controller
     {
