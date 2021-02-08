@@ -6,6 +6,8 @@ pwd
 sudo apt-get install libnss3-tools
 
 SETUP_PTH=$HOME/.devcerts/dotnet
+DOTNET_ASSEMBLY_NAME=CSC4330ProjectGroupA1
+
 if [ ! -d $SETUP_PTH ]; then
     mkdir -p $SETUP_PTH
     if [ $? -eq 1 ]; then
@@ -87,7 +89,7 @@ user_secrets
 
 if [ "$PASSWD" != "" ]; then
     dotnet dev-certs https --clean --import $PFXFILE -p $PASSWD
-    dotnet dev-certs https -ep $HOME/.aspnet/https/dowling.pfx -p $PASSWD
+    dotnet dev-certs https -ep $HOME/.aspnet/https/$DOTNET_ASSEMBLY_NAME.pfx -p $PASSWD
     else
         echo "don't have access to cert password"
         exit

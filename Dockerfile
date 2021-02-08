@@ -13,4 +13,4 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "CSC4330_project-groupA1.dll"]
+ENTRYPOINT ["dotnet", "CSC4330ProjectGroupA1.dll"]
