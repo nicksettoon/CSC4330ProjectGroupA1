@@ -1,0 +1,19 @@
+﻿@model RentModel
+@{
+    ViewData["Title"] = "Rent";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Rent a Bike</h1>
+    <p>You can rent bikes :)</p>
+    <form asp-controller="Rent" asp-action="Submit" method="post">
+        <div class="form">
+            <div class="form-group">
+                <label asp-for="BikeNumber">Enter the Bikes Number:</label>
+            </div>
+            <input asp-for="" />
+            <br />
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
