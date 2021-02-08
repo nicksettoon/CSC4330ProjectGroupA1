@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2EOntpWnmWbkLjzdZdw4P7ukPf9BFvCC25jHDusuoz57ER2rK1aYwm8zb4EKW6nvqeEDIVg62yE3RT5y/IQdaA==",
+  "dgSpecHash": "DS/5DKicDb8vJX9BMT/D6lvoUtGUf+i2LTj6oU6Y+5q682CiXskoLU2Rl7HaN+LCy8Iwye3NP3e3cmdJp3sQyQ==",
   "success": true,
-  "projectFilePath": "/home/odin/git/CSC4330_project-groupA1/DowlingBikes/DowlingBikes.csproj",
+  "projectFilePath": "/home/odin/git/CSC4330ProjectGroupA1/CSC4330ProjectGroupA1.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DowlingBikes
+namespace CSC4330ProjectGroupA1
 {
     public class Startup
     {

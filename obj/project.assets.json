@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/odin/git/CSC4330_project-groupA1/DowlingBikes/DowlingBikes.csproj",
-      "projectName": "DowlingBikes",
-      "projectPath": "/home/odin/git/CSC4330_project-groupA1/DowlingBikes/DowlingBikes.csproj",
+      "projectUniqueName": "/home/odin/git/CSC4330ProjectGroupA1/CSC4330ProjectGroupA1.csproj",
+      "projectName": "CSC4330ProjectGroupA1",
+      "projectPath": "/home/odin/git/CSC4330ProjectGroupA1/CSC4330ProjectGroupA1.csproj",
       "packagesPath": "/home/odin/.nuget/packages/",
-      "outputPath": "/home/odin/git/CSC4330_project-groupA1/DowlingBikes/obj/",
+      "outputPath": "/home/odin/git/CSC4330ProjectGroupA1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/odin/.nuget/NuGet/NuGet.Config"
