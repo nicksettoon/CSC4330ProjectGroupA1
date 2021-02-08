@@ -1,3 +1,5 @@
+## Docker file for base .NET Core backend container
+## sourced from https://docs.docker.com/engine/examples/dotnetcore/
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
 WORKDIR /app
 
