@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSC4330ProjectGroupA1.Entities
+namespace Backend.Entities
 {
     public class Bike
     {
