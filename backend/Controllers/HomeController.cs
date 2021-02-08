@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CSC4330ProjectGroupA1.Models;
+using backend.Models;
 
-namespace CSC4330ProjectGroupA1.Controllers
+namespace backend.Controllers
 {
     public class HomeController : Controller
     {

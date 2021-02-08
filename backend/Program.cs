@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CSC4330ProjectGroupA1
+namespace backend
 {
     public class Program
     {
