@@ -11,6 +11,18 @@
                 "--build"
             ],
             "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "rt_build",
+            "command": "docker-compose",
+            "args": [
+                "--profile",
+                "ci",
+                "up",
+                "--build"
+            ],
+            "problemMatcher": "$msCompile",
             "group": {
                 "kind": "build",
                 "isDefault": true

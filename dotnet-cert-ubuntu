@@ -6,7 +6,7 @@ pwd
 sudo apt-get install libnss3-tools
 
 SETUP_PTH=$HOME/.devcerts/dotnet
-DOTNET_ASSEMBLY_NAME=CSC4330ProjectGroupA1
+DOTNET_ASSEMBLY_NAME=Backend
 
 if [ ! -d $SETUP_PTH ]; then
     mkdir -p $SETUP_PTH
@@ -58,10 +58,12 @@ function configure_nssdb() {
     certutil -d sql:$1 -D -n dotnet-devcert
     certutil -d sql:$1 -A -t "CP,," -n dotnet-devcert -i $CRTFILE
 }
+
 function user_secrets(){
-    dotnet user-secrets init
+    dotnet user-secrets --project Backend/Backend.csproj init
     if [ "$PASSWD" != "" ]; then
-        dotnet user-secrets set "Kestrel:Certificates:Development:Password" "$PASSWD"
+        echo "user-secrets2"
+        dotnet user-secrets --project Backend/Backend.csproj set "Kestrel:Certificates:Development:Password" "$PASSWD"
     else
         echo "don't have access to cert password"
         exit
@@ -88,7 +90,9 @@ sudo update-ca-certificates
 user_secrets
 
 if [ "$PASSWD" != "" ]; then
+    echo "dev-cert1"
     dotnet dev-certs https --clean --import $PFXFILE -p $PASSWD
+    echo "dev-cert2"
     dotnet dev-certs https -ep $HOME/.aspnet/https/$DOTNET_ASSEMBLY_NAME.pfx -p $PASSWD
     else
         echo "don't have access to cert password"
