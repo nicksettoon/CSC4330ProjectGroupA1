@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "dev_build",
+            "command": "docker-compose",
+            "args": [
+                "--profile",
+                "dev",
+                "up",
+                "--build"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "up",
+            "command": "docker-compose",
+            "args": [
+                "--profile",
+                "dev",
+                "up"
+            ],
+            "problemMatcher": "$msCompile",
+        }
+    ]
+}
