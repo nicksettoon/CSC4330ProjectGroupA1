@@ -11,7 +11,11 @@
                 "--build"
             ],
             "problemMatcher": "$msCompile",
-            "group": "build"
+            // "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "rt_build",
@@ -23,10 +27,11 @@
                 "--build"
             ],
             "problemMatcher": "$msCompile",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "group": "build"
+            // "group": {
+            //     "kind": "build",
+            //     "isDefault": true
+            // }
         },
         {
             "label": "up",

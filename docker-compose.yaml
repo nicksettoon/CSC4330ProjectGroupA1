@@ -18,7 +18,8 @@ services:
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
-      - ${GDIR}/${REPO_NAME}:/app
+      # PROJ_DIR = Backend project directory
+      # - ${GDIR}/${PROJ_DIR}:/app
     # depends_on:
       # - DB
     profiles: ["dev"]
