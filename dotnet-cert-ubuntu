@@ -6,6 +6,7 @@ pwd
 sudo apt-get install libnss3-tools
 
 SETUP_PTH=$HOME/.devcerts/dotnet
+PROJ_DIR=./Backend
 DOTNET_ASSEMBLY_NAME=Backend
 
 if [ ! -d $SETUP_PTH ]; then
@@ -60,10 +61,10 @@ function configure_nssdb() {
 }
 
 function user_secrets(){
-    dotnet user-secrets --project Backend/Backend.csproj init
+    dotnet user-secrets init
     if [ "$PASSWD" != "" ]; then
         echo "user-secrets2"
-        dotnet user-secrets --project Backend/Backend.csproj set "Kestrel:Certificates:Development:Password" "$PASSWD"
+        dotnet user-secrets set "Kestrel:Certificates:Development:Password" "$PASSWD"
     else
         echo "don't have access to cert password"
         exit
@@ -73,6 +74,7 @@ function user_secrets(){
 echo 'Please enter the password you  would like to use for the certificate.'
 read -s PASSWD
 
+cd $PROJ_DIR
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $KEYFILE -out $CRTFILE -config $CONF_PATH --passout pass:$PASSWD
 
 openssl pkcs12 -export -out $PFXFILE -inkey $KEYFILE -in $CRTFILE --passout pass:$PASSWD
