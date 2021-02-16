@@ -11,7 +11,7 @@ namespace Backend.Entities
         public string CardHolderName { get; set; }
         
         [Key]
-        public string ccNumber { get; set; }
+        public string CCNumber { get; set; }
 
         public DateTime ExpDate { get; set; }
 

@@ -14,11 +14,31 @@ namespace Backend.Areas.Identity.Data
         public string Name { get; set; }
 
         [PersonalData]
-        public CreditCard CreditCard { get; set; }
+        public string CardHolderName { get; set; }
 
+        [PersonalData]
+        public string CCNumber { get; set; }
+
+        [PersonalData]
+        public DateTime ExpDate { get; set; }
+
+        [PersonalData]
+        public int SecurityNumber { get; set; }
+
+        [PersonalData]
+        public string BillingAddress { get; set; }
+
+        [PersonalData]
         public string Address { get; set; }
 
+        [PersonalData]
+        public string State { get; set; }
 
+        [PersonalData]
+        public string City { get; set; }
+
+        [PersonalData]
+        public string Country { get; set; }
 
     }
 }
