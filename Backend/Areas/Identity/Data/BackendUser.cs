@@ -20,7 +20,7 @@ namespace Backend.Areas.Identity.Data
         public string CCNumber { get; set; }
 
         [PersonalData]
-        public DateTime ExpDate { get; set; }
+        public string ExpDate { get; set; }
 
         [PersonalData]
         public int SecurityNumber { get; set; }
@@ -39,6 +39,9 @@ namespace Backend.Areas.Identity.Data
 
         [PersonalData]
         public string Country { get; set; }
+
+        [PersonalData]
+        public string ZipCode { get; set; }
 
     }
 }

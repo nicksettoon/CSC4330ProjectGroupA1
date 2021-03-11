@@ -41,6 +41,56 @@ namespace Backend.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             [Display(Name = "Full Name")]
             public string Name { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Card Holders Name")]
+            public string CardHolderName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Credit Card Number")]
+            public string CCNumber { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Experiation Number (mm/yyyy)")]
+            public string ExpDate { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Security Number")]
+            public int SecurityNumber { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Billing Address")]
+            public string BillingAddress { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "State")]
+            public string State { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Country")]
+            public string Country { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Zip Code")]
+            public string ZipCode { get; set; }
         }
 
         private async Task LoadAsync(BackendUser user)
@@ -52,7 +102,18 @@ namespace Backend.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Name = user.Name,
+                CardHolderName = user.CardHolderName,
+                CCNumber = user.CCNumber,
+                ExpDate = user.ExpDate,
+                SecurityNumber = user.SecurityNumber,
+                BillingAddress = user.BillingAddress,
+                Address = user.Address,
+                State = user.State,
+                City = user.City,
+                Country = user.Country,
+                ZipCode = user.ZipCode
             };
         }
 
@@ -92,6 +153,63 @@ namespace Backend.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+
+            if (Input.Name != user.Name)
+            {
+                user.Name = Input.Name;
+            }
+
+            if (Input.CardHolderName != user.CardHolderName)
+            {
+                user.CardHolderName = Input.CardHolderName;
+            }
+
+            if (Input.CCNumber != user.CCNumber)
+            {
+                user.CCNumber = Input.CCNumber;
+            }
+
+            if (Input.ExpDate != user.ExpDate)
+            {
+                user.ExpDate = Input.ExpDate;
+            }
+
+            if (Input.SecurityNumber != user.SecurityNumber)
+            {
+                user.SecurityNumber = Input.SecurityNumber;
+            }
+
+            if (Input.BillingAddress != user.BillingAddress)
+            {
+                user.BillingAddress = Input.BillingAddress;
+            }
+
+            if (Input.Address != user.Address)
+            {
+                user.Address = Input.Address;
+            }
+
+            if (Input.State != user.State)
+            {
+                user.State = Input.State;
+            }
+
+            if (Input.City != user.City)
+            {
+                user.City = Input.City;
+            }
+
+            if (Input.Country != user.Country)
+            {
+                user.Country = Input.Country;
+            }
+
+            if (Input.ZipCode != user.ZipCode)
+            {
+                user.ZipCode = Input.ZipCode;
+            }
+
+            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
