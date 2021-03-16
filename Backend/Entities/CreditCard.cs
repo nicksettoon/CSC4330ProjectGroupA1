@@ -8,15 +8,19 @@ namespace Backend.Entities
 {
     public class CreditCard
     {
+        [Required]
         public string CardHolderName { get; set; }
         
         [Key]
         public string CCNumber { get; set; }
 
+        [Required]
         public DateTime ExpDate { get; set; }
 
+        [Required]
         public int SecurityNumber { get; set; }
 
+        [Required]
         public string Address { get; set; }
     }
 }
