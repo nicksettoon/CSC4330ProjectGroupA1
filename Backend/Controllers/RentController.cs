@@ -21,6 +21,13 @@ namespace DowlingBikes
                 // Query for bike number and set to rented.
                 return View();
             }
+
+            public IActionResult Submit(RentModel data)
+            {
+                data.CheckOut = System.DateTime.Now;
+                // Put RentModel in database
+                return View();
+            }
         }
     }
 }
