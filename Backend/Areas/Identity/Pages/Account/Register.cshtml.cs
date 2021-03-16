@@ -47,6 +47,61 @@ namespace Backend.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Full Name")]
+            public string Name { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Card Holders Name")]
+            public string CardHolderName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Credit Card Number")]
+            public string CCNumber { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Experiation Number (mm/yyyy)")]
+            public string ExpDate { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Security Number")]
+            public int SecurityNumber { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Billing Address")]
+            public string BillingAddress { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "State")]
+            public string State { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Country")]
+            public string Country { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Zip Code")]
+            public string ZipCode { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -75,7 +130,21 @@ namespace Backend.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new BackendUser { UserName = Input.Email, Email = Input.Email };
+                var user = new BackendUser {
+                    Name = Input.Name,
+                    CardHolderName = Input.CardHolderName,
+                    CCNumber = Input.CCNumber,
+                    ExpDate = Input.ExpDate,
+                    SecurityNumber = Input.SecurityNumber,
+                    BillingAddress = Input.BillingAddress,
+                    Address = Input.Address,
+                    State = Input.State,
+                    City = Input.City,
+                    Country = Input.Country,
+                    ZipCode = Input.ZipCode,
+                    UserName = Input.Email, 
+                    Email = Input.Email 
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
