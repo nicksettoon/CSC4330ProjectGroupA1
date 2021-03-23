@@ -56,8 +56,11 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Entities.Rental", b =>
                 {
-                    b.Property<int>("BikeNumber")
+                    b.Property<int>("Key")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BikeNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CheckInTime")
@@ -70,7 +73,7 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("BikeNumber");
+                    b.HasKey("Key");
 
                     b.ToTable("Rentals");
                 });
