@@ -69,3 +69,76 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* CUSTOM STUFF */
+#home {
+  background-color: #5bbef0;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+}
+
+#landingBody, body {
+  background-color: #5bbef0;
+  color: white;
+}
+
+.text-danger{
+  color: orange;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  color: #5bbef0;
+  padding: 0;
+  text-align: left;
+}
+
+h1 {
+  font-size: 12em;
+  font-weight: 200;
+}
+
+h2 {
+  margin: 0px 0px -50px 5px;
+  font-weight: 700;
+  font-size: 7em;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 4.5em;
+}
+
+#head-top {
+  background-color: white;
+}
+
+#bigBike {
+  width: 55em;
+  height: 33em;
+  background-image: url('../img/BIKE 2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.inputPanel {
+  background-color: #458aad;
+  padding: 30px;
+  margin: 30px;
+}
+
+.container {
+  min-width: 100%;
+}
+
+.card * {
+  color: black;
+}
+
+.navbar {
+  width: 200px;
+}
