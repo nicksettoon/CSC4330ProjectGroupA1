@@ -14,7 +14,7 @@ namespace Backend.Models
 
         [Display(Name = "Check Out Time")]
         public DateTime CheckOut { get; set; }
-
+ 
         [Display(Name = "Check In Time")]
         public DateTime CheckIn { get; set; }
 
