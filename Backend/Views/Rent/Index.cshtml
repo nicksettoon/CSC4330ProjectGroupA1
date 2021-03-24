@@ -2,22 +2,40 @@
 @{
     ViewData["Title"] = "Rent";
 }
-
-    <div class="card">
-        <div class="card-header">
-            <h1>Rent a Bike</h1>
-        </div>
-        <div class="card-body">
-            <form asp-controller="Rent" asp-action="Submit" method="post">
-                <div class="form">
-                    <div class="form-group">
-                        <label asp-for="BikeNumber">Enter the Bikes Number:</label>
-                        <input asp-for="BikeNumber" class="form-control" />
-                        <span asp-validation-for="BikeNumber" class="text-danger"></span>
-                    </div>
-                    <br />
-                    <input type="submit" value="Submit" />
-                </div>
-            </form>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h1>Rent a Bike</h1>
     </div>
+    <div class="card-body">
+        <form asp-controller="Rent" asp-action="Submit" method="post">
+            <div class="form">
+                <div class="form-group">
+                    <label asp-for="BikeNumber">Enter the Bikes Number:</label>
+                    <input asp-for="BikeNumber" class="form-control" />
+                    <span asp-validation-for="BikeNumber" class="text-danger"></span>
+                </div>
+                <br />
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div class="card">
+    <div class="card-header">
+        <h1>Return a Bike</h1>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Rent" asp-action="Return" method="post">
+            <div class="form">
+                <div class="form-group">
+                    <label asp-for="BikeNumber">Enter the Bikes Number:</label>
+                    <input asp-for="BikeNumber" class="form-control" />
+                    <span asp-validation-for="BikeNumber" class="text-danger"></span>
+                </div>
+                <br />
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+</div>

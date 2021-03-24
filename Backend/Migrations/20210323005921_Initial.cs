@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,15 +39,16 @@ namespace Backend.Migrations
                 name: "Rentals",
                 columns: table => new
                 {
-                    BikeNumber = table.Column<int>(type: "INTEGER", nullable: false)
+                    Key = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    BikeNumber = table.Column<int>(type: "INTEGER", nullable: false),
                     CheckOutTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CheckInTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     RenterEmail = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rentals", x => x.BikeNumber);
+                    table.PrimaryKey("PK_Rentals", x => x.Key);
                 });
         }
 

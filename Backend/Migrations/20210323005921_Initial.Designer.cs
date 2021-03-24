@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DowlingContext))]
-    [Migration("20210316033609_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210323005921_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,8 +58,11 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Entities.Rental", b =>
                 {
-                    b.Property<int>("BikeNumber")
+                    b.Property<int>("Key")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BikeNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CheckInTime")
@@ -72,7 +75,7 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("BikeNumber");
+                    b.HasKey("Key");
 
                     b.ToTable("Rentals");
                 });
