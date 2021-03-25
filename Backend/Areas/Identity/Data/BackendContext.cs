@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Backend.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Data
 {
-    public class BackendContext : IdentityDbContext<BackendUser>
+    public class BackendContext : IdentityDbContext<IdentityUser>
     {
         public BackendContext(DbContextOptions<BackendContext> options)
             : base(options)
