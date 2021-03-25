@@ -4,88 +4,133 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-12">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Name"></label>
-                <input asp-for="Input.Name" class="form-control" />
-                <span asp-validation-for="Input.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Address"></label>
-                <input asp-for="Input.Address" class="form-control" />
-                <span asp-validation-for="Input.Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.City"></label>
-                <input asp-for="Input.City" class="form-control" />
-                <span asp-validation-for="Input.City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.State"></label>
-                <input asp-for="Input.State" class="form-control" />
-                <span asp-validation-for="Input.State" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Country"></label>
-                <input asp-for="Input.Country" class="form-control" />
-                <span asp-validation-for="Input.Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ZipCode"></label>
-                <input asp-for="Input.ZipCode" class="form-control" />
-                <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.CardHolderName"></label>
-                <input asp-for="Input.CardHolderName" class="form-control" />
-                <span asp-validation-for="Input.CardHolderName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.CCNumber"></label>
-                <input asp-for="Input.CCNumber" class="form-control" />
-                <span asp-validation-for="Input.CCNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ExpDate"></label>
-                <input asp-for="Input.ExpDate" class="form-control" />
-                <span asp-validation-for="Input.ExpDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.SecurityNumber"></label>
-                <input asp-for="Input.SecurityNumber" class="form-control" />
-                <span asp-validation-for="Input.SecurityNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.BillingAddress"></label>
-                <input asp-for="Input.BillingAddress" class="form-control" />
-                <span asp-validation-for="Input.BillingAddress" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+<body>
+    <div class="row-6 p-3 bg-white" style="color: #5bbef0;">
+        <h3>REGISTER</h3>
+        <h4>Create a new account</h4>
     </div>
-</div>
+    <div class="row-8 d-flex justify-content-center">
+        <form class="col-6" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div class="inputPanel rounded">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Name"></label>
+                    <input asp-for="Input.Name" class="form-control" />
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Email">Email</label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password">Password</label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="inputPanel rounded">
+                <div class="form-group">
+                    <label asp-for="Input.Address">Address</label>
+                    <input asp-for="Input.Address" class="form-control" />
+                    <span asp-validation-for="Input.Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.City">City</label>
+                    <input asp-for="Input.City" class="form-control" />
+                    <span asp-validation-for="Input.City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.State">State</label>
+                    <input asp-for="Input.State" class="form-control" />
+                    <span asp-validation-for="Input.State" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Country">Country</label>
+                    <input asp-for="Input.Country" class="form-control" />
+                    <span asp-validation-for="Input.Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ZipCode">Zip Code</label>
+                    <input asp-for="Input.ZipCode" class="form-control" />
+                    <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="inputPanel rounded">
+                <div class="form-group">
+                    <label asp-for="Input.CardHolderName">Cardholder Name</label>
+                    <input asp-for="Input.CardHolderName" class="form-control" />
+                    <span asp-validation-for="Input.CardHolderName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.CCNumber">Credit Card Number</label>
+                    <input asp-for="Input.CCNumber" class="form-control" />
+                    <span asp-validation-for="Input.CCNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ExpDate">Expiration Date</label>
+                    <input asp-for="Input.ExpDate" class="form-control" />
+                    <span asp-validation-for="Input.ExpDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.SecurityNumber">Security Number</label>
+                    <input asp-for="Input.SecurityNumber" class="form-control" />
+                    <span asp-validation-for="Input.SecurityNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.BillingAddress">Billing Address</label>
+                    <input asp-for="Input.BillingAddress" class="form-control" />
+                    <span asp-validation-for="Input.BillingAddress" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary p-2">Complete Registration</button>
+            </div>
+        </form>
+        
+    </div>
+    <div class="row-8 d-flex justify-content-sm-center">
+        <button class="btn btn-primary m-4" id="backPanel">Back</button>
+        <button class="btn btn-primary m-4" id="nextPanel">Next</button>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var panels = document.getElementsByClassName('inputPanel');
+        console.log(panels.length);
+
+        var currPanel = 0;
+
+        var nextButton = document.getElementById('nextPanel');
+        var backButton = document.getElementById('backPanel');
+
+        function showPanel() {
+            for (var i = 0; i < panels.length; i++) {
+                panels[i].hidden = !(i == currPanel);
+            }
+        }
+
+        showPanel();
+
+        nextButton.addEventListener('click', function () {
+            if (currPanel < panels.length - 1) {
+                currPanel++;
+                showPanel();
+            }
+        });
+
+        backButton.addEventListener('click', function () {
+            if (currPanel > 0) {
+                currPanel--;
+                showPanel();
+            }
+        });
+    </script>
+</body>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
