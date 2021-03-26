@@ -56,41 +56,33 @@ button.accept-policy {
 html {
   position: relative;
   min-height: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
-}
 
 /* CUSTOM STUFF */
-#home {
-  background-color: #5bbef0;
+#home, #rental, body {
+    background-color: #5bbef0;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+#user {
+  background-color: white;
   color: white;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
 }
 
-#landingBody, body {
-  background-color: #5bbef0;
-  color: white;
-}
-
-.text-danger{
-  color: orange;
-}
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: 'Montserrat', sans-serif;
   color: #5bbef0;
   padding: 0;
@@ -98,19 +90,19 @@ h4 {
 }
 
 h1 {
-  font-size: 12em;
-  font-weight: 200;
+  font-size: 12rem;
+  font-weight: 800;
 }
 
 h2 {
-  margin: 0px 0px -50px 5px;
   font-weight: 700;
-  font-size: 7em;
+  font-size: 5.5vw;
+  line-height: 1;
 }
 
 h3 {
   font-weight: 600;
-  font-size: 4.5em;
+  font-size: 4.5rem;
 }
 
 #head-top {
@@ -118,27 +110,68 @@ h3 {
 }
 
 #bigBike {
-  width: 55em;
-  height: 33em;
-  background-image: url('../img/BIKE 2.png');
+  width: 60em;
+  height: 35em;
+  background-image: url('BIKE 2.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
 
+#flexBike {    
+  width: 60%;
+  height: auto;
+}
+
+#bikeUsePanel{
+  background-color:  #5bbef0;
+}
+
+#userOptionsPanel{
+  background-color: white;
+}
+
 .inputPanel {
-  background-color: #458aad;
+  background-color: #0079b4;
   padding: 30px;
-  margin: 30px;
+  margin-top: 30px;
+}
+
+.inputPanel button{
+  background-color: #0dc58e;
 }
 
 .container {
   min-width: 100%;
+  max-height: 100%;
 }
 
 .card * {
   color: black;
 }
 
-.navbar {
-  width: 200px;
+#bikeUsePanel p {
+  font-weight: 600;
+  display: block;
+  text-align: center;
+  font-size: 2.5vw;
+  height: 100%;
+}
+
+
+#adminOptions button{
+  background-color: #0366d6;
+  color: white;
+  font-size: 2.7em;
+}
+
+.userOptionsBtn {
+  color: white;
+  font-size: 32px;
+  background-color: #0366d6;
+  width: 250px;
+  padding: 17px;
+}
+
+footer, footer .container {
+  background-color: transparent;
 }

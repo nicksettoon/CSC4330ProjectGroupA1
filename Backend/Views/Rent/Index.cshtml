@@ -1,7 +1,58 @@
 ﻿@model RentModel
 @{
-    ViewData["Title"] = "Rent";
+ViewData["Title"] = "Rent";
 }
+
+<body id="rent">
+    <div class="container">
+        <main role="main">
+            <div class="row bg-white p-3">
+                <h3>RENT A BIKE</h3>
+            </div>
+            <div class="row pt-3 d-flex justify-content-center">
+                <div class="col-6">
+                    <h3 class="text-center text-uppercase text-white">Rental Costs</h3>
+                    <table class="table table-small text-center text-white h5">
+                        <tbody>
+                            <tr>
+                                <th>$9</th>
+                                <th>$5</th>
+                                <th>$25</th>
+                                <th>up to $200</th>
+                                <th>$500</th>
+                            </tr>
+                            <tr>
+                                <td>per hour</td>
+                                <td>per half-hour</td>
+                                <td>if returned to different dock</td>
+                                <td>if returned damaged</td>
+                                <td>upon failure to return</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4 h5 p-3">
+                    <form asp-controller="Rent" asp-action="Submit" method="post">
+                        <div class="form text-center">
+                            <div class="form-group">
+                                <label asp-for="BikeNumber">Enter the ID number of the bike you'd like to rent:</label>
+                                <input asp-for="BikeNumber" class="form-control" />
+                                <span asp-validation-for="BikeNumber" class="text-danger"></span>
+                            </div>
+                            <input type="submit" value="Submit" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center pt-2">
+                <img src="../img/BIKE 2.png" class="img-fluid" style="max-width: 30%; height: auto;" />
+            </div>
+        </main>
+    </div>
+</body>
+@*
 <div class="card">
     <div class="card-header">
         <h1>Rent a Bike</h1>
@@ -39,3 +90,4 @@
         </form>
     </div>
 </div>
+*@
