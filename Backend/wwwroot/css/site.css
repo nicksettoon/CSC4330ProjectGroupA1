@@ -27,11 +27,11 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+  font-size: 0.85vw;
 }
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 0.85vw;
   }
 }
 
@@ -58,11 +58,12 @@ html {
   min-height: 100%;
   font-family: 'Montserrat', sans-serif;
 }
-
+/*
 body {
-  /* Margin bottom by footer height */
+  Margin bottom by footer height 
   margin-bottom: 60px;
 }
+*/
 
 /* CUSTOM STUFF */
 #home, #rental, body {
@@ -90,7 +91,7 @@ h3 {
 }
 
 h1 {
-  font-size: 12rem;
+  font-size: 7vw;
   font-weight: 800;
 }
 
@@ -102,24 +103,11 @@ h2 {
 
 h3 {
   font-weight: 600;
-  font-size: 4.5rem;
+  font-size: 4.2vw;
 }
 
 #head-top {
   background-color: white;
-}
-
-#bigBike {
-  width: 60em;
-  height: 35em;
-  background-image: url('BIKE 2.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-#flexBike {    
-  width: 60%;
-  height: auto;
 }
 
 #bikeUsePanel{
@@ -128,12 +116,14 @@ h3 {
 
 #userOptionsPanel{
   background-color: white;
+  font-size: 1vw;
 }
 
 .inputPanel {
-  background-color: #0079b4;
-  padding: 30px;
-  margin-top: 30px;
+    background-color: #0079b4;
+    padding: 30px;
+    margin-top: 30px;
+    font-size: 1vw;
 }
 
 .inputPanel button{
@@ -166,9 +156,9 @@ h3 {
 
 .userOptionsBtn {
   color: white;
-  font-size: 32px;
+  font-size: 2vw;
   background-color: #0366d6;
-  width: 250px;
+  width: 280px;
   padding: 17px;
 }
 
