@@ -25,5 +25,11 @@ namespace Backend.Entities
 
         [Required]
         public string RenterEmail { get; set; }
+
+        [Required]
+        public bool IsBikeDamaged { get; set; }
+
+        [Required]
+        public double Price { get; set; }
     }
 }

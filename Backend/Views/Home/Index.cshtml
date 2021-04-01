@@ -1,17 +1,30 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+ViewData["Title"] = "Home Page";
 }
 
-<body id="home">   
+<body id="home">
     <div class="container">
         <main role="main">
-            <div>                
-                <div id="head-top" class="row">                    
-                    <div class="col-4" id="headerText">
-                        <h2>DOWLING</h2>
-                        <h1>BIKES</h1>
-                    </div>                    
-                </div>
+                <div class="row">
+                    <div class="col-6" id="bikeUsePanel">
+                        <div class="row p-4">
+                            <h3 class="text-white">Hi, [USER]</h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <p class="w-100">Current Bike Number: <br> [BIKE NUMBER] </p>
+                            <div class="w-100 d-flex justify-content-center p-5">
+                                <img class="img-fluid;" style="max-width: 60%;" src="../img/BIKE 2.png">
+                            </div>
+                            <p class="w-100" style="padding-bottom: 10%; ">Current Charge: <br> [TOTAL COST] </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="userOptionsPanel">
+                        <div class="row justify-content-center align-items-center flex-column flex-wrap"
+                             style="height: 100vh;">
+                            <a class="btn userOptionsBtn m-4" id="returnBtn" asp-area="Rent" asp-controller="Rent" asp-action="Index">Return Bike</a>
+                            <a class="btn userOptionsBtn m-4" id="rentBtn" asp-area="Rent" asp-controller="Rent" asp-action="Index">Rent Bike</a>
+                        </div>
+                    </div>
                 @*<div class="row align-items-center pr-3" id="landingBody">
                     <div class="col-3"></div>
                     <div class="col-3">
@@ -27,11 +40,22 @@
                         </div>
                         <p>New User? <a asp-area="Identity" asp-page="/Account/Register">Click Here</a></p>
                         <button type="submit" class="btn btn-primary">Login</button>
-                    </div>                  
+                    </div>
                     <div id="bigBike" class="ml-auto p-4"></div>
                 </div>*@
             </div>
-            
+
         </main>
     </div>
+
+    <script>
+        document.getElementById('rentBtn').addEventListener("click", function () {
+            setRenting(true);
+        });
+
+        document.getElementById('returnBtn').addEventListener("click", function () {
+            setRenting(false);            
+        });
+
+    </script>
 </body>

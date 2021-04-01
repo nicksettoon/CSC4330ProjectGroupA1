@@ -14,7 +14,7 @@ namespace Backend.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.4");
 
             modelBuilder.Entity("Backend.Entities.Bike", b =>
                 {
@@ -68,6 +68,12 @@ namespace Backend.Migrations
 
                     b.Property<DateTime>("CheckOutTime")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsBikeDamaged")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("RenterEmail")
                         .IsRequired()

@@ -18,5 +18,16 @@ namespace Backend.Models
         [Display(Name = "Check In Time")]
         public DateTime CheckIn { get; set; }
 
+        [Display(Name = "Is the Bike Damaged")]
+        public bool BikeDamaged { get; set; }
+
+        public bool AlreadyCheckedOut { get; set; }
+
+        public double Price { get; set; }
+
+        public bool RentSuccessful { get; set; }
+
+        public bool ReturnSuccessful { get; set; }
+
     }
 }
