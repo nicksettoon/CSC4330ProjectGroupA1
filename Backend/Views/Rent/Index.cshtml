@@ -34,6 +34,12 @@
                     <span asp-validation-for="BikeNumber" class="text-danger"></span>
                 </div>
                 <br />
+                <div class="form-group">
+                    <label asp-for="BikeDamaged">Is the Bike Damaged?</label>
+                    <input asp-for="BikeDamaged" class="form-control" />
+                    <span asp-validation-for="BikeDamaged" class="text-danger"></span>
+                </div>
+                <br />
                 <input type="submit" value="Submit" />
             </div>
         </form>

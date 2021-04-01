@@ -44,7 +44,9 @@ namespace Backend.Migrations
                     BikeNumber = table.Column<int>(type: "INTEGER", nullable: false),
                     CheckOutTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CheckInTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    RenterEmail = table.Column<string>(type: "TEXT", nullable: false)
+                    RenterEmail = table.Column<string>(type: "TEXT", nullable: false),
+                    IsBikeDamaged = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Price = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
