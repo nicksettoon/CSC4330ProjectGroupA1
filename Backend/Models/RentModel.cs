@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Models
@@ -29,5 +26,8 @@ namespace Backend.Models
 
         public bool ReturnSuccessful { get; set; }
 
+        public int RentDock { get; set; }
+
+        public int ReturnDock { get; set; }
     }
 }

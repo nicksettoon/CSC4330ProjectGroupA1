@@ -36,7 +36,7 @@ ViewData["Title"] = "Rent";
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-4 h5 p-3">
-                    <form asp-controller="Rent" asp-action="Submit" method="post">
+                    <form asp-controller="Rent" asp-action="Rent" method="post">
                         <div class="form text-center">
                             <div class="form-group">
                                 <label asp-for="BikeNumber">Enter the ID number of the bike you'd like to rent:</label>
@@ -92,7 +92,13 @@ ViewData["Title"] = "Rent";
                                 <span asp-validation-for="BikeNumber" class="text-danger"></span>
                             </div>
                             <br />
-                            <input type="submit" value="Submit" class="btn btn-primary"/>
+                            <div class="form-group">
+                                <label asp-for="ReturnDock">Enter the dock that you returned the bike to:</label>
+                                <input asp-for="ReturnDock" class="form-control" />
+                                <span asp-validation-for="ReturnDock" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <input type="submit" value="Submit" class="btn btn-primary" />
                         </div>
                     </form>
                 </div>
