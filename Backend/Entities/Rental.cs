@@ -1,10 +1,6 @@
-﻿using Backend.Areas.Identity.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Backend.Entities
 {
@@ -31,5 +27,11 @@ namespace Backend.Entities
 
         [Required]
         public double Price { get; set; }
+
+        [Required]
+        public int RentDock { get; set; }
+
+        /*[Required]
+        public int ReturnDock { get; set; }*/
     }
 }

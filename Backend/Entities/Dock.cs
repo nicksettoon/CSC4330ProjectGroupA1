@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace Backend.Entities
 {
-    public class Bike
+    public class Dock
     {
         public int Id { get; set; }
 
-        [Required]
-        public bool Rented { get; set; } 
-
-        public int DockId { get; set; }
-        public Dock Dock { get; set; }
+        public ICollection<Bike> Bikes { get; set; }
     }
 }
