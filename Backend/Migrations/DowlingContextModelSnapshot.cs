@@ -322,6 +322,9 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ReturnDock")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Key");
 
                     b.ToTable("Rentals");

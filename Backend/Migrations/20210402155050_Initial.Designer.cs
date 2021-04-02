@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DowlingContext))]
-    [Migration("20210402035931_Initial")]
+    [Migration("20210402155050_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -323,6 +323,9 @@ namespace Backend.Migrations
                     b.Property<string>("RenterEmail")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("ReturnDock")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Key");
 
