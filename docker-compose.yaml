@@ -4,6 +4,16 @@
 
 version: '3.9'
 services:
+  sql_server: # service for SQL Server container
+    image: "mcr.microsoft.com/mssql/server:2019-CU9-ubuntu-16.04"
+    environment: 
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "nickisawesome@1"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    profiles: ["support"]
+
   backend_dev:
     build:
       context: ./Backend
@@ -15,13 +25,24 @@ services:
       ASPNETCORE_URLS: "https://+;http://+"
       ASPNETCORE_HTTPS_PORT: "8081"
       ASPNETCORE_ENVIRONMENT: "Development"
+      DBServer: "sql_server"
+      DBPort: "1433"
+      Database: "Dowling"
+      # !!!!!WARNING!!!!!
+      # CHANGE DBUser and DBPassword FOR PRODUCTION ENV
+      # NEVER DO THIS FOR PRODUCTION
+      # I REPEAT NEVER DO THIS FOR PRODUCTION
+      # I will take care of this later
+      DBUser: "SA"
+      DBPassword: "nickisawesome@1"
+
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
       # PROJ_DIR = Backend project directory
       # - ${GDIR}/${PROJ_DIR}:/app
-    # depends_on:
-      # - DB
+    depends_on:
+      - sql_server
     profiles: ["dev"]
 
   backend_ci:
@@ -41,7 +62,3 @@ services:
     # depends_on:
       # - DB
     profiles: ["ci"]
-
-  DB:
-    image: "postgres:13.1-alpine"
-    profiles: ["support"]

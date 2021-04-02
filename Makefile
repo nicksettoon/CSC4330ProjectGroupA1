@@ -6,7 +6,7 @@ cert: # runs https cert script
 	./dotnet-cert-ubuntu	
 
 dev: # triggers docker-compose dev profile
-	docker-compose --profile dev up --build
+	docker-compose --profile dev --profile support up --build
 
 ci: # triggers docker-compose continuous integration profile
 	docker-compose --profile ci up --build

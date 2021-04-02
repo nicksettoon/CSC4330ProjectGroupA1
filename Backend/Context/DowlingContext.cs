@@ -10,8 +10,9 @@ namespace Backend.Context
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<Dock> Docks { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(@"Data Source=\dowling_db\Dowling.db");
+        public DowlingContext (DbContextOptions<DowlingContext> options) : base(options) { }
+
+        // protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

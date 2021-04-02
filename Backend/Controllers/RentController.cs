@@ -13,6 +13,12 @@ namespace DowlingBikes
         [Authorize]
         public class RentController : Controller
         {
+            private DowlingContext _context;
+
+            public RentController(DowlingContext context)
+            {
+                _context = context;
+            }
 
             private const double DamagedBikePriceAddition = 200.0;
             private const double DifferentDockPriceAddition = 25.0;
@@ -28,32 +34,29 @@ namespace DowlingBikes
 
                 var userEmail = User.Identity.Name;
 
-                using (var context = new DowlingContext())
+                var rental = from a in _context.Rentals
+                                where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime())
+                                select a;
+
+                var bike = (from a in _context.Bikes
+                            where a.Id.Equals(data.BikeNumber)
+                            select a).First();
+
+
+
+                if (!rental.Any() && bike != null)
                 {
-                    var rental = from a in context.Rentals
-                                 where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime())
-                                 select a;
-
-                    var bike = (from a in context.Bikes
-                               where a.Id.Equals(data.BikeNumber)
-                               select a).First();
-
-
-
-                    if (!rental.Any() && bike != null)
-                    {
-                        var bikeDock = bike.DockId;
-                        context.Rentals.Add(new Rental() { CheckOutTime = data.CheckOut, BikeNumber = data.BikeNumber, RenterEmail = userEmail, RentDock = bikeDock });
-                        data.AlreadyCheckedOut = false;
-                    }
-                    else
-                    {
-                        data.AlreadyCheckedOut = true;
-                        data.RentSuccessful = false;
-                    }
-                    
-                    context.SaveChanges();
+                    var bikeDock = bike.DockId;
+                    _context.Rentals.Add(new Rental() { CheckOutTime = data.CheckOut, BikeNumber = data.BikeNumber, RenterEmail = userEmail, RentDock = bikeDock });
+                    data.AlreadyCheckedOut = false;
                 }
+                else
+                {
+                    data.AlreadyCheckedOut = true;
+                    data.RentSuccessful = false;
+                }
+                
+                _context.SaveChanges();
 
                 return View("Index", data);
             }
@@ -67,49 +70,46 @@ namespace DowlingBikes
 
                 var userEmail = User.Identity.Name;
 
-                using (var context = new DowlingContext())
+                var rental = from a in _context.Rentals
+                                where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime()) && a.RenterEmail.Equals(userEmail)
+                                select a;
+
+                if (rental.Any())
                 {
-                    var rental = from a in context.Rentals
-                                 where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime()) && a.RenterEmail.Equals(userEmail)
-                                 select a;
+                    // Check In Handling
+                    var entry = _context.Entry(rental.First());
+                    entry.Property(u => u.CheckInTime).CurrentValue = data.CheckIn;
 
-                    if (rental.Any())
+                    // Price Handling
+                    var price = RoundHours((entry.Property(u => u.CheckInTime).CurrentValue - entry.Property(u => u.CheckOutTime).CurrentValue).TotalHours) * 9;
+                    
+
+                    // Add charge if Bike is Damaged
+                    if (data.BikeDamaged)
                     {
-                        // Check In Handling
-                        var entry = context.Entry(rental.First());
-                        entry.Property(u => u.CheckInTime).CurrentValue = data.CheckIn;
-
-                        // Price Handling
-                        var price = RoundHours((entry.Property(u => u.CheckInTime).CurrentValue - entry.Property(u => u.CheckOutTime).CurrentValue).TotalHours) * 9;
-                        
-
-                        // Add charge if Bike is Damaged
-                        if (data.BikeDamaged)
-                        {
-                            price += DamagedBikePriceAddition;
-                            Console.WriteLine("Bike was damaged");
-                        }
-
-                        // Add charge if bike is returned at different dock
-                        if (data.ReturnDock != entry.Property(u => u.RentDock).CurrentValue)
-                        {
-                            price += DifferentDockPriceAddition;
-                            Console.WriteLine("Returned at different Dock");
-                        }
-
-                        entry.Property(u => u.Price).CurrentValue = price;
-                        data.Price = price;
-
-                        // Damaged Bike Handling
-                        entry.Property(u => u.IsBikeDamaged).CurrentValue = data.BikeDamaged;
-
-                        context.SaveChanges();
+                        price += DamagedBikePriceAddition;
+                        Console.WriteLine("Bike was damaged");
                     }
-                    else
+
+                    // Add charge if bike is returned at different dock
+                    if (data.ReturnDock != entry.Property(u => u.RentDock).CurrentValue)
                     {
-                        data.ReturnSuccessful = false;
-                        Console.WriteLine("Return Failed");
+                        price += DifferentDockPriceAddition;
+                        Console.WriteLine("Returned at different Dock");
                     }
+
+                    entry.Property(u => u.Price).CurrentValue = price;
+                    data.Price = price;
+
+                    // Damaged Bike Handling
+                    entry.Property(u => u.IsBikeDamaged).CurrentValue = data.BikeDamaged;
+
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    data.ReturnSuccessful = false;
+                    Console.WriteLine("Return Failed");
                 }
 
                 return View("Index", data);
