@@ -18,8 +18,11 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(Areas.Identity.Data.BackendUser profile, RentModel rent)
         {
+            ViewData["USER"] = profile.Name;
+            ViewData["BIKE NUMBER"] = rent.BikeNumber;
+            ViewData["TOTAL COST"] = rent.Price;
             return View();
         }
 
