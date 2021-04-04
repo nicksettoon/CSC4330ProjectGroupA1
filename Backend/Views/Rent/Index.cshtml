@@ -43,9 +43,18 @@ ViewData["Title"] = "Rent";
                                 <input asp-for="BikeNumber" class="form-control" />
                                 <span asp-validation-for="BikeNumber" class="text-danger"></span>
                             </div>
+                            <br/>
                             <input type="submit" value="Submit" class="btn btn-primary" />
                         </div>
                     </form>
+                    @*@if (Model.AlreadyCheckedOut)
+                    {
+                        <h2>The bike is already checked out :(</h2>
+                    }
+                    @if (Model.RentSuccessful)
+                    {
+                        <h2>You rented the bike :(</h2>
+                    }*@
                 </div>
             </div>
             <div class="row d-flex justify-content-center pt-2">
@@ -93,6 +102,12 @@ ViewData["Title"] = "Rent";
                             </div>
                             <br />
                             <div class="form-group">
+                                <label asp-for="BikeDamaged">Enter the dock that you returned the bike to:</label>
+                                <input asp-for="BikeDamaged" class="form-control" />
+                                <span asp-validation-for="BikeDamaged" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
                                 <label asp-for="ReturnDock">Enter the dock that you returned the bike to:</label>
                                 <input asp-for="ReturnDock" class="form-control" />
                                 <span asp-validation-for="ReturnDock" class="text-danger"></span>
@@ -101,6 +116,13 @@ ViewData["Title"] = "Rent";
                             <input type="submit" value="Submit" class="btn btn-primary" />
                         </div>
                     </form>
+
+                   @* @if (Model.ReturnSuccessful)
+                    {
+                        <h2>You returned the bike!</h2>
+                        <div>@Model.Price</div>
+                    }*@
+                    
                 </div>
             </div>
             <div class="row d-flex justify-content-center pt-2">

@@ -19,7 +19,15 @@ namespace DowlingBikes
 
             public IActionResult Index()
             {
-                return View();
+                var data = new RentModel()
+                {
+                    RentSuccessful = false,
+                    ReturnSuccessful = false,
+                    AlreadyCheckedOut = false
+
+                };
+
+                return View(data);
             }
 
             public IActionResult Rent(RentModel data)
@@ -44,7 +52,9 @@ namespace DowlingBikes
                     {
                         var bikeDock = bike.DockId;
                         context.Rentals.Add(new Rental() { CheckOutTime = data.CheckOut, BikeNumber = data.BikeNumber, RenterEmail = userEmail, RentDock = bikeDock });
+                        bike.Rented = true;
                         data.AlreadyCheckedOut = false;
+                        context.SaveChanges();
                     }
                     else
                     {
@@ -52,7 +62,7 @@ namespace DowlingBikes
                         data.RentSuccessful = false;
                     }
                     
-                    context.SaveChanges();
+                    
                 }
 
                 return View("Index", data);
@@ -73,7 +83,11 @@ namespace DowlingBikes
                                  where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime()) && a.RenterEmail.Equals(userEmail)
                                  select a;
 
-                    if (rental.Any())
+                    var bike = (from a in context.Bikes
+                                where a.Id.Equals(data.BikeNumber)
+                                select a).First();
+
+                    if (rental.Any() && bike != null)
                     {
                         // Check In Handling
                         var entry = context.Entry(rental.First());
@@ -81,7 +95,8 @@ namespace DowlingBikes
 
                         // Price Handling
                         var price = RoundHours((entry.Property(u => u.CheckInTime).CurrentValue - entry.Property(u => u.CheckOutTime).CurrentValue).TotalHours) * 9;
-                        
+
+                        entry.Property(u => u.IsBikeDamaged).CurrentValue = data.BikeDamaged;
 
                         // Add charge if Bike is Damaged
                         if (data.BikeDamaged)
@@ -90,10 +105,13 @@ namespace DowlingBikes
                             Console.WriteLine("Bike was damaged");
                         }
 
+                        entry.Property(u => u.ReturnDock).CurrentValue = data.ReturnDock;
+
                         // Add charge if bike is returned at different dock
                         if (data.ReturnDock != entry.Property(u => u.RentDock).CurrentValue)
                         {
                             price += DifferentDockPriceAddition;
+                            bike.DockId = data.ReturnDock;
                             Console.WriteLine("Returned at different Dock");
                         }
 
@@ -102,6 +120,8 @@ namespace DowlingBikes
 
                         // Damaged Bike Handling
                         entry.Property(u => u.IsBikeDamaged).CurrentValue = data.BikeDamaged;
+
+                        bike.Rented = false;
 
                         context.SaveChanges();
                     }

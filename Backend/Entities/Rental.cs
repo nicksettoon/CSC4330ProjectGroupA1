@@ -31,7 +31,7 @@ namespace Backend.Entities
         [Required]
         public int RentDock { get; set; }
 
-        /*[Required]
-        public int ReturnDock { get; set; }*/
+        [Required]
+        public int ReturnDock { get; set; }
     }
 }
