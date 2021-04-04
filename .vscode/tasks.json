@@ -7,6 +7,8 @@
             "args": [
                 "--profile",
                 "dev",
+                "--profile",
+                "support",
                 "up",
                 "--build"
             ],
