@@ -63,7 +63,7 @@ function configure_nssdb() {
 function user_secrets(){
     dotnet user-secrets init
     if [ "$PASSWD" != "" ]; then
-        echo "user-secrets2"
+        echo "Setting user-secrets"
         dotnet user-secrets set "Kestrel:Certificates:Development:Password" "$PASSWD"
     else
         echo "don't have access to cert password"
@@ -75,6 +75,7 @@ echo 'Please enter the password you  would like to use for the certificate.'
 read -s PASSWD
 
 cd $PROJ_DIR
+echo "### Creating Cert ###"
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $KEYFILE -out $CRTFILE -config $CONF_PATH --passout pass:$PASSWD
 
 openssl pkcs12 -export -out $PFXFILE -inkey $KEYFILE -in $CRTFILE --passout pass:$PASSWD
@@ -92,12 +93,12 @@ sudo update-ca-certificates
 user_secrets
 
 if [ "$PASSWD" != "" ]; then
-    echo "dev-cert1"
+    echo "## Cleaning existing dev-certs ##"
     dotnet dev-certs https --clean --import $PFXFILE -p $PASSWD
-    echo "dev-cert2"
+    echo "## Adding new dev-cert ##"
     dotnet dev-certs https -ep $HOME/.aspnet/https/$DOTNET_ASSEMBLY_NAME.pfx -p $PASSWD
     else
-        echo "don't have access to cert password"
+        echo "I don't have access to cert password"
         exit
 fi
 

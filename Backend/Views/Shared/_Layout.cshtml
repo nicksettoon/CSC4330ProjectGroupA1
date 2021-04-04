@@ -9,24 +9,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm mb-3 ml-auto fixed-top">
+    <nav class="navbar navbar-expand-sm mb-3 fixed-top">
         <partial name="_LoginPartial" />
     </nav>
 
     @RenderBody()
 
-    <footer class="footer text-muted">
+    <footer class="footer text-muted fixed-bottom pb-2">
         <div class="container">
             &copy; 2021 - DowlingBikes - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    
 </body>
 
 </html>

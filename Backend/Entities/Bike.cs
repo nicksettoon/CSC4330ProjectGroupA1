@@ -8,10 +8,12 @@ namespace Backend.Entities
 {
     public class Bike
     {
-        [Key]
-        public int BikeNumber { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public bool Rented { get; set; }
+        public bool Rented { get; set; } 
+
+        public int DockId { get; set; }
+        public Dock Dock { get; set; }
     }
 }

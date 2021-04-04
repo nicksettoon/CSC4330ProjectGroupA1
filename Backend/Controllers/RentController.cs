@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Backend.Models;
 using Backend.Context;
 using Backend.Entities;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace DowlingBikes
 {
@@ -16,27 +13,49 @@ namespace DowlingBikes
         [Authorize]
         public class RentController : Controller
         {
+
+            private const double DamagedBikePriceAddition = 200.0;
+            private const double DifferentDockPriceAddition = 25.0;
+
             public IActionResult Index()
             {
                 return View();
             }
 
-            public IActionResult Submit(RentModel data)
+            public IActionResult Rent(RentModel data)
             {
-                data.CheckOut = System.DateTime.Now;
-
-                /*ClaimsPrincipal currentUser = this.User;
-                var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;*/
+                data.CheckOut = DateTime.Now;
 
                 var userEmail = User.Identity.Name;
 
                 using (var context = new DowlingContext())
                 {
-                    context.Rentals.Add(new Rental() { CheckOutTime = data.CheckOut, BikeNumber = data.BikeNumber, RenterEmail = userEmail });
+                    var rental = from a in context.Rentals
+                                 where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime())
+                                 select a;
+
+                    var bike = (from a in context.Bikes
+                               where a.Id.Equals(data.BikeNumber)
+                               select a).First();
+
+
+
+                    if (!rental.Any() && bike != null)
+                    {
+                        var bikeDock = bike.DockId;
+                        context.Rentals.Add(new Rental() { CheckOutTime = data.CheckOut, BikeNumber = data.BikeNumber, RenterEmail = userEmail, RentDock = bikeDock });
+                        data.AlreadyCheckedOut = false;
+                    }
+                    else
+                    {
+                        data.AlreadyCheckedOut = true;
+                        data.RentSuccessful = false;
+                    }
+                    
                     context.SaveChanges();
                 }
 
-                return View("Index");
+                return View("Index", data);
             }
 
             public IActionResult Return(RentModel data)
@@ -54,12 +73,58 @@ namespace DowlingBikes
                                  where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime()) && a.RenterEmail.Equals(userEmail)
                                  select a;
 
-                    context.Entry(rental.First()).Property(u => u.CheckInTime).CurrentValue = data.CheckIn;
+                    if (rental.Any())
+                    {
+                        // Check In Handling
+                        var entry = context.Entry(rental.First());
+                        entry.Property(u => u.CheckInTime).CurrentValue = data.CheckIn;
 
-                    context.SaveChanges();
+                        // Price Handling
+                        var price = RoundHours((entry.Property(u => u.CheckInTime).CurrentValue - entry.Property(u => u.CheckOutTime).CurrentValue).TotalHours) * 9;
+                        
+
+                        // Add charge if Bike is Damaged
+                        if (data.BikeDamaged)
+                        {
+                            price += DamagedBikePriceAddition;
+                            Console.WriteLine("Bike was damaged");
+                        }
+
+                        // Add charge if bike is returned at different dock
+                        if (data.ReturnDock != entry.Property(u => u.RentDock).CurrentValue)
+                        {
+                            price += DifferentDockPriceAddition;
+                            Console.WriteLine("Returned at different Dock");
+                        }
+
+                        entry.Property(u => u.Price).CurrentValue = price;
+                        data.Price = price;
+
+                        // Damaged Bike Handling
+                        entry.Property(u => u.IsBikeDamaged).CurrentValue = data.BikeDamaged;
+
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        data.ReturnSuccessful = false;
+                        Console.WriteLine("Return Failed");
+                    }
                 }
 
-                return View("Index");
+                return View("Index", data);
+            }
+
+            private static double RoundHours(double hours)
+            {
+                var roundedHours = Math.Round(hours);
+
+                if (roundedHours < hours)
+                {
+                    roundedHours++;
+                }
+
+                return roundedHours;
             }
         }
     }

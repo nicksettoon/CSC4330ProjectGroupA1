@@ -2,3 +2,10 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+var isRenting = localStorage.getItem('isRenting') ||  false;
+
+function setRenting(flag) {
+    isRenting = flag;
+    localStorage.setItem('isRenting', isRenting);
+}
