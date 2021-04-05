@@ -175,9 +175,9 @@ table {
 }
 
 th {
-  text-align: center;
-  padding: 8px;
-  border: 2px solid #bfbfbf;
+    text-align: center;
+    padding: 8px;
+    border: 2px solid #bfbfbf;
 }
 
 td {
@@ -195,6 +195,6 @@ tr:nth-child(even) {
   color: black
 }
 
-tableContainer {
-  margin: 50px 25px;
+.tableContainer {
+  margin: 100px 25px;
 }

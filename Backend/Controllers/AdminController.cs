@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
+using Backend.Context;
 
 namespace Backend.Controllers
 {
@@ -30,7 +31,13 @@ namespace Backend.Controllers
 
         public IActionResult NewReport()
         {
-            return View();
+            /*using (var context = new DowlingContext())
+            {
+                var rental = from a in context.Rentals
+                             where a.CheckInTime.Equals()
+                             select a;
+            }*/
+                return View();
         }
 
         public IActionResult OldReport()
