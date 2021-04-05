@@ -1,4 +1,5 @@
-﻿@{ 
+﻿@model AdminModel
+@{
     ViewData["Title"] = "Weekly Report";
 }
 
@@ -7,14 +8,14 @@
 
 </head>
 
-<body >
+<body>
     <div class="container">
 
         <main role="main" id="rentPanel">
             <div class="row bg-white p-3">
                 <h3>WEEKLY REPORT</h3>
             </div>
-            
+
             <div class="tableContainer">
                 <div style="overflow-x:auto;">
                     <table>
@@ -30,42 +31,43 @@
                             <th>Rent Dock</th>
                             <th>Return Dock</th>
                         </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Eve</td>
-                            <td>94</td>
-                            <td>94</td>
-                            <td>94</td>
-                            <td>94</td>
-                            <td>94</td>
-                            <td>94</td>
-                            <td>94</td>
-                            <td>94</td>
-                            <td>94</td>
-                        </tr>
-                        <tr>
-                            <td>Adam</td>
-                            <td>67</td>
-                            <td>67</td>
-                            <td>67</td>
-                            <td>67</td>
-                            <td>67</td>
-                            <td>67</td>
-                            <td>67</td>
-                            <td>67</td>
-                            <td>67</td>
-                        </tr>
+
+                        @foreach (var item in Model.Rentals)
+                        {
+                            <tr>
+                                <td>@item.RenterEmail</td>
+                                <td>@item.BikeNumber</td>
+                                <td>@item.CheckOutTime</td>
+                                <td>@item.CheckInTime</td>
+                                <td>50</td>
+                                @if (item.IsBikeDamaged)
+                                {
+                                    <td>Yes</td>
+                                }
+                                else
+                                {
+                                    <td>No</td>
+                                }
+                                @if (item.CheckInTime.Equals(new DateTime()))
+                                {
+                                    <td> No</td>
+                                }
+                                else
+                                {
+                                    <td> Yes</td>
+                                }
+                                <td>@item.Price</td>
+                                <td>@item.RentDock</td>
+                                @if (item.ReturnDock != 0)
+                                {
+                                    <td>@item.ReturnDock</td>
+                                }
+                                else
+                                {
+                                    <td><a asp-action="MissingBike" asp-route-id="@item.BikeNumber">Report It Missing</a></td>
+                                }
+                            </tr>
+                        }
                     </table>
                 </div>
             </div>
