@@ -9,12 +9,16 @@ using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Context;
 using Backend.Entities;
+using Backend.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Backend.Areas.Identity.Data;
 
 namespace Backend.Controllers
 {
 
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private const double MissingBikeCharge = 500.0;
@@ -28,7 +32,7 @@ namespace Backend.Controllers
 
         public IActionResult Index(Areas.Identity.Data.BackendUser profile)
         {
-            ViewData["USER"] = User.Identity.Name;
+            ViewData["USER"] =  User.Identity.Name;
             return View();
         }
 

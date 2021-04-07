@@ -6,6 +6,8 @@ using Backend.Areas.Identity.Data;
 using Backend.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +28,6 @@ namespace Backend
         {
             services.AddRazorPages();
             services.AddControllersWithViews();
-
             
         }
 
@@ -60,5 +61,23 @@ namespace Backend
                 endpoints.MapRazorPages();
             });
         }
+
+        /*private async void CreateDevUser(object state)
+        {
+            var db = new BackendContext();
+
+            var store = new UserStore<BackendUser>(db);
+            var manager = new UserManager<BackendUser>(store);
+            var userId = "f951e76b-e7b7-459b-bda5-4e057fb525f1";
+            if (manager.HasPassword(userId))
+            {
+
+                manager.RemovePassword(userId);
+            }
+            var newPasswordHash = manager.PasswordHasher.HashPassword("changeme");
+            var user = manager.FindById(userId);
+            await store.SetPasswordHashAsync(user, newPasswordHash);
+            await manager.UpdateAsync(user);
+        }*/
     }
 }

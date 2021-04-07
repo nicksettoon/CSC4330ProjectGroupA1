@@ -1,6 +1,7 @@
 ﻿using Backend.Areas.Identity.Data;
 using Backend.Data;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace Backend.Areas.Identity
                         context.Configuration.GetConnectionString("BackendContextConnection")));
 
                 services.AddDefaultIdentity<BackendUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<BackendRole>()
                     .AddEntityFrameworkStores<BackendContext>();
             });
         }
