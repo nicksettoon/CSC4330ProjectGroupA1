@@ -3,16 +3,14 @@ using System;
 using Backend.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Backend.Migrations
+namespace Backend.Migrations.Dowling
 {
     [DbContext(typeof(DowlingContext))]
-    [Migration("20210404195928_InitialCreate")]
-    partial class InitialCreate
+    partial class DowlingContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,9 +236,32 @@ namespace Backend.Migrations
                     b.Property<int>("SecurityNumber")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("Valid")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("CCNumber");
 
                     b.ToTable("CreditCards");
+
+                    b.HasData(
+                        new
+                        {
+                            CCNumber = "2222000011110000",
+                            Address = "123 Rat Road, Baker LA  70714",
+                            CardHolderName = "Seth Richard",
+                            ExpDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityNumber = 420,
+                            Valid = true
+                        },
+                        new
+                        {
+                            CCNumber = "0000000000000000",
+                            Address = "Doesn't Matter St.",
+                            CardHolderName = "Invalid Card",
+                            ExpDate = new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityNumber = 123,
+                            Valid = false
+                        });
                 });
 
             modelBuilder.Entity("Backend.Entities.Dock", b =>

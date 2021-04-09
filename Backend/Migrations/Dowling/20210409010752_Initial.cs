@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Backend.Migrations
+namespace Backend.Migrations.Dowling
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace Backend.Migrations
                     CardHolderName = table.Column<string>(type: "TEXT", nullable: false),
                     ExpDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     SecurityNumber = table.Column<int>(type: "INTEGER", nullable: false),
-                    Address = table.Column<string>(type: "TEXT", nullable: false)
+                    Address = table.Column<string>(type: "TEXT", nullable: false),
+                    Valid = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,6 +74,16 @@ namespace Backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "CreditCards",
+                columns: new[] { "CCNumber", "Address", "CardHolderName", "ExpDate", "SecurityNumber", "Valid" },
+                values: new object[] { "2222000011110000", "123 Rat Road, Baker LA  70714", "Seth Richard", new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 420, true });
+
+            migrationBuilder.InsertData(
+                table: "CreditCards",
+                columns: new[] { "CCNumber", "Address", "CardHolderName", "ExpDate", "SecurityNumber", "Valid" },
+                values: new object[] { "0000000000000000", "Doesn't Matter St.", "Invalid Card", new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 123, false });
 
             migrationBuilder.InsertData(
                 table: "Docks",
