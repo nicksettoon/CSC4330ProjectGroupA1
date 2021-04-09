@@ -22,5 +22,8 @@ namespace Backend.Entities
 
         [Required]
         public string Address { get; set; }
+
+        [Required]
+        public bool Valid { get; set; }
     }
 }

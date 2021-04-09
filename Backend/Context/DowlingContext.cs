@@ -294,13 +294,27 @@ namespace Backend.Context
             {
                 new CreditCard
                 {
-
+                    CardHolderName = "Seth Richard",
+                    CCNumber = "2222000011110000",
+                    ExpDate = new System.DateTime(2025, 3, 1),
+                    SecurityNumber = 420,
+                    Address = "123 Rat Road, Baker LA  70714",
+                    Valid = true,
+                },
+                new CreditCard
+                {
+                    CardHolderName = "Invalid Card",
+                    CCNumber = "0000000000000000",
+                    ExpDate = new System.DateTime(2020, 3, 1),
+                    SecurityNumber = 123,
+                    Address = "Doesn't Matter St.",
+                    Valid = false,
                 }
             };
 
             modelBuilder.Entity<Dock>().HasData(docks);
             modelBuilder.Entity<Bike>().HasData(bikes);
-            //modelBuilder.Entity<CreditCard>().HasData(creditCard);
+            modelBuilder.Entity<CreditCard>().HasData(creditCard);
 
             base.OnModelCreating(modelBuilder);
         }

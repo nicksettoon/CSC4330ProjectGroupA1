@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Backend.Context;
 
 namespace Backend.Areas.Identity.Pages.Account
 {
@@ -128,6 +129,20 @@ namespace Backend.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            using (var context = new DowlingContext())
+            {
+                var creditCard = context.CreditCards.Find(Input.CCNumber);
+                if (creditCard == null)
+                {
+                    ModelState.AddModelError("NotFound", "Credit Card Not Found");
+                }
+                else if (!creditCard.Valid)
+                {
+                    ModelState.AddModelError("Invalid", "Invalid Credit Card");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 var user = new BackendUser {
