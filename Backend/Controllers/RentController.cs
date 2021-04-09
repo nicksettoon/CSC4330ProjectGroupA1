@@ -152,7 +152,7 @@ namespace DowlingBikes
                         bike.Rented = false;
 
                         TempData["Return"] = "true";
-                        TempData["Price"] = price;
+                        TempData["Price"] = price.ToString();
 
                         context.SaveChanges();
                     }

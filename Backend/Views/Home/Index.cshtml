@@ -1,9 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@TempData["Rent"]
-@TempData["Return"]
-@TempData["Price"]
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -29,8 +26,6 @@
                          style="height: 100vh;">
                         <a class="btn userOptionsBtn m-4" id="rentBtn" asp-area="Rent" asp-controller="Rent" asp-action="Rent">Rent Bike</a>
                         <a class="btn userOptionsBtn m-4" id="returnBtn" asp-area="Rent" asp-controller="Rent" asp-action="Return">Return Bike</a>
-
-                        <button class="btn btn-primary" onclick="document.getElementById('popUp').style.display='block'">Submit</button>
                     </div>
                 </div>
                 @{ var RentResult = TempData["Rent"] as string;
@@ -46,7 +41,7 @@
                                 <h4>You rented the bike :)</h4>
                             </div>
 
-                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Cancel</button>
+                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Close</button>
                         </div>
                     </div>
                 }
@@ -60,7 +55,7 @@
                                 <h4>Total price was: <var>price</var> </h4> 
                             </div>
 
-                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Cancel</button>
+                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">CLose</button>
                         </div>
                     </div>
                 }
