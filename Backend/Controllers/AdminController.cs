@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Context;
-using Backend.Entities;
-using Backend.Data;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Backend.Areas.Identity.Data;
 
 namespace Backend.Controllers
 {
@@ -30,7 +23,7 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(Areas.Identity.Data.BackendUser profile)
+        public IActionResult Index()
         {
             ViewData["USER"] =  User.Identity.Name;
             return View();
@@ -71,7 +64,7 @@ namespace Backend.Controllers
 
         public IActionResult MissingBike(string id)
         {
-            var bikeNumber = Int32.Parse(id);
+            var bikeNumber = int.Parse(id);
             using (var context = new DowlingContext())
             {
                 var rentalQuery = from a in context.Rentals

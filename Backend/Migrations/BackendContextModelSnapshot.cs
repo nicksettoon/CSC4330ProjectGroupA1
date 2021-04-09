@@ -48,8 +48,8 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7abbee1b-6402-49a0-816c-4d41f97acc71",
-                            ConcurrencyStamp = "7172fe44-ed59-4994-bfa7-0a06c856a560",
+                            Id = "6b65bf00-830a-4db3-80a9-d09d1277d360",
+                            ConcurrencyStamp = "82de6af2-288f-4375-9c93-bf19a27ad84f",
                             Name = "Admin"
                         });
                 });
@@ -154,14 +154,14 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9f68ed72-b335-478c-b014-5426ab2c883c",
+                            Id = "f80bb388-a288-4828-a5df-b17b3266002d",
                             AccessFailedCount = 0,
                             Address = "1234 5th Ave",
                             BillingAddress = "1234 5th Ave, New York City, NY 10000",
                             CCNumber = "0000 8888 7777 6666",
                             CardHolderName = "Debbie Dowling",
                             City = "New York City",
-                            ConcurrencyStamp = "94cee39e-04c4-42ce-82ce-f630c1cf9ddc",
+                            ConcurrencyStamp = "e06147a0-09b3-444a-96c6-9052eef33efe",
                             Country = "US",
                             Email = "sric111@lsu.edu",
                             EmailConfirmed = true,
@@ -169,14 +169,36 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             Name = "Mr. Dowling",
                             NormalizedUserName = "sric111@lsu.edu",
-                            PasswordHash = "AQAAAAEAACcQAAAAENt3r8eFTMggKf0UmtdJuutQStZxqZUCxepkpVIoWdiaScyaL9BYYpeIxlSN4jnZBw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGsn2v32QG9vBVABbhSB16RzPL3b1SLZnr8SeWfWvPKwLbecH+tbOQwmB9IHk55t/w==",
                             PhoneNumberConfirmed = false,
                             SecurityNumber = 420,
-                            SecurityStamp = "051014e5-80d6-4a27-bf48-2626d119a65c",
+                            SecurityStamp = "b8196bfc-0d94-4b8a-aff1-0ca0a2336fca",
                             State = "NY",
                             TwoFactorEnabled = false,
                             UserName = "sric111@lsu.edu",
                             ZipCode = "10000"
+                        });
+                });
+
+            modelBuilder.Entity("Backend.Areas.Identity.Data.BackendUserRole", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "f80bb388-a288-4828-a5df-b17b3266002d",
+                            RoleId = "6b65bf00-830a-4db3-80a9-d09d1277d360"
                         });
                 });
 
@@ -252,25 +274,6 @@ namespace Backend.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.ToTable("AspNetUserRoles");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<string>");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
@@ -294,58 +297,6 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Areas.Identity.Data.BackendUserRole", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<string>");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasDiscriminator().HasValue("BackendUserRole");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "9f68ed72-b335-478c-b014-5426ab2c883c",
-                            RoleId = "7abbee1b-6402-49a0-816c-4d41f97acc71"
-                        });
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.HasOne("Backend.Areas.Identity.Data.BackendRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("Backend.Areas.Identity.Data.BackendUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("Backend.Areas.Identity.Data.BackendUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("Backend.Areas.Identity.Data.BackendUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Backend.Areas.Identity.Data.BackendUserRole", b =>
-                {
                     b.HasOne("Backend.Areas.Identity.Data.BackendRole", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
@@ -363,6 +314,42 @@ namespace Backend.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Backend.Areas.Identity.Data.BackendRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Backend.Areas.Identity.Data.BackendUser", null)
+                        .WithMany("Claims")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Backend.Areas.Identity.Data.BackendUser", null)
+                        .WithMany("Logins")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Backend.Areas.Identity.Data.BackendUser", null)
+                        .WithMany("Tokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Backend.Areas.Identity.Data.BackendRole", b =>
                 {
                     b.Navigation("UserRoles");
@@ -370,6 +357,12 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Areas.Identity.Data.BackendUser", b =>
                 {
+                    b.Navigation("Claims");
+
+                    b.Navigation("Logins");
+
+                    b.Navigation("Tokens");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

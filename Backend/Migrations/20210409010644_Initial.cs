@@ -124,8 +124,7 @@ namespace Backend.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -167,17 +166,17 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "7abbee1b-6402-49a0-816c-4d41f97acc71", "7172fe44-ed59-4994-bfa7-0a06c856a560", "Admin", null });
+                values: new object[] { "6b65bf00-830a-4db3-80a9-d09d1277d360", "82de6af2-288f-4375-9c93-bf19a27ad84f", "Admin", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "BillingAddress", "CCNumber", "CardHolderName", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "ExpDate", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityNumber", "SecurityStamp", "State", "TwoFactorEnabled", "UserName", "ZipCode" },
-                values: new object[] { "9f68ed72-b335-478c-b014-5426ab2c883c", 0, "1234 5th Ave", "1234 5th Ave, New York City, NY 10000", "0000 8888 7777 6666", "Debbie Dowling", "New York City", "94cee39e-04c4-42ce-82ce-f630c1cf9ddc", "US", "sric111@lsu.edu", true, "09/21", false, null, "Mr. Dowling", null, "sric111@lsu.edu", "AQAAAAEAACcQAAAAENt3r8eFTMggKf0UmtdJuutQStZxqZUCxepkpVIoWdiaScyaL9BYYpeIxlSN4jnZBw==", null, false, 420, "051014e5-80d6-4a27-bf48-2626d119a65c", "NY", false, "sric111@lsu.edu", "10000" });
+                values: new object[] { "f80bb388-a288-4828-a5df-b17b3266002d", 0, "1234 5th Ave", "1234 5th Ave, New York City, NY 10000", "0000 8888 7777 6666", "Debbie Dowling", "New York City", "e06147a0-09b3-444a-96c6-9052eef33efe", "US", "sric111@lsu.edu", true, "09/21", false, null, "Mr. Dowling", null, "sric111@lsu.edu", "AQAAAAEAACcQAAAAEGsn2v32QG9vBVABbhSB16RzPL3b1SLZnr8SeWfWvPKwLbecH+tbOQwmB9IHk55t/w==", null, false, 420, "b8196bfc-0d94-4b8a-aff1-0ca0a2336fca", "NY", false, "sric111@lsu.edu", "10000" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId", "Discriminator" },
-                values: new object[] { "7abbee1b-6402-49a0-816c-4d41f97acc71", "9f68ed72-b335-478c-b014-5426ab2c883c", "BackendUserRole" });
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "6b65bf00-830a-4db3-80a9-d09d1277d360", "f80bb388-a288-4828-a5df-b17b3266002d" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
