@@ -13,7 +13,8 @@
 
         <main role="main" id="rentPanel">
             <div class="row bg-white p-3">
-                <h3>WEEKLY REPORT</h3>
+                <h3 id="Weekly">WEEKLY REPORT</h3>
+                <h3 id="Old"> PAST REPORTS</h3>
             </div>
 
             <div class="tableContainer">
@@ -73,4 +74,16 @@
             </div>
         </main>
     </div>
+    <script>
+        if (localStorage.getItem('isRenting') == 'true')
+        {
+            document.getElementById('Weekly').style.display = 'block';
+            document.getElementById('Old').style.display = 'none';
+        }
+        else
+        {
+            document.getElementById('Old').style.display = 'none';
+            document.getElementById('Weekly').style.display = 'block';
+        }
+    </script>
 </body>

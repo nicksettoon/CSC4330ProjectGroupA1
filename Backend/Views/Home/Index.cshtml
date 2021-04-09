@@ -1,6 +1,12 @@
 ﻿@{
-ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
+@TempData["Rent"]
+@TempData["Return"]
+@TempData["Price"]
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
 <body id="home">
     <div class="container">
@@ -21,11 +27,44 @@ ViewData["Title"] = "Home Page";
                 <div class="col-md-6" id="userOptionsPanel">
                     <div class="row justify-content-center align-items-center flex-column flex-wrap"
                          style="height: 100vh;">
-                        <a class="btn userOptionsBtn m-4" id="returnBtn" asp-area="Rent" asp-controller="Rent" asp-action="Index">Return Bike</a>
-                        <a class="btn userOptionsBtn m-4" id="rentBtn" asp-area="Rent" asp-controller="Rent" asp-action="Index">Rent Bike</a>
+                        <a class="btn userOptionsBtn m-4" id="rentBtn" asp-area="Rent" asp-controller="Rent" asp-action="Rent">Rent Bike</a>
+                        <a class="btn userOptionsBtn m-4" id="returnBtn" asp-area="Rent" asp-controller="Rent" asp-action="Return">Return Bike</a>
+
+                        <button class="btn btn-primary" onclick="document.getElementById('popUp').style.display='block'">Submit</button>
                     </div>
                 </div>
-                
+                @{ var RentResult = TempData["Rent"] as string;
+                    var ReturnResult = TempData["Return"] as string;
+                    var price = TempData["Price"];
+                }
+
+                @if (RentResult == "true")
+                {
+                    <div id="popUp" class="modal">
+                        <div class="modal-content animate" action="/action_page.php">
+                            <div class="container2">
+                                <h4>You rented the bike :)</h4>
+                            </div>
+
+                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                }
+                @if (ReturnResult == "true")
+                {
+                    <div id="popUp" class="modal">
+                        <div class="modal-content animate" action="/action_page.php">
+                            <div class="container2">
+                                <h4>You returned the bike :)</h4>
+
+                                <h4>Total price was: <var>price</var> </h4> 
+                            </div>
+
+                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                }
+
             </div>
 
         </main>
@@ -38,5 +77,12 @@ ViewData["Title"] = "Home Page";
         document.getElementById('returnBtn').addEventListener("click", function () {
             setRenting(false);
         });
+
+        var modal = document.getElementById('popUp');
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
     </script>
 </body>

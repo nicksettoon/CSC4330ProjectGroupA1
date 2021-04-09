@@ -21,8 +21,8 @@
                 <div class="col-md-6" id="userOptionsPanel">
                     <div class="row justify-content-center align-items-center flex-column flex-wrap"
                          style="height: 100vh;">
-                        <a class="btn userOptionsBtn m-4" id="newReportBtn" asp-area="Admin" asp-controller="Admin" asp-action="NewReport">Generate Weekly Report</a>
-                        <a class="btn userOptionsBtn m-4" id="oldReportBtn" asp-area="Admin" asp-controller="Admin" asp-action="OldReport">View Old Reports</a>
+                        <a class="btn userOptionsBtn m-4" asp-area="Admin" asp-controller="Admin" asp-action="Report" asp-route-id="new">Generate Weekly Report</a>
+                        <a class="btn userOptionsBtn m-4" asp-area="Admin" asp-controller="Admin" asp-action="Report" asp-route-id="old">View Old Reports</a>
                     </div>
                 </div>
                 @*<div class="row align-items-center pr-3" id="landingBody">
