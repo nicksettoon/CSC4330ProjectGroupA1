@@ -30,7 +30,6 @@
                 </div>
                 @{ var RentResult = TempData["Rent"] as string;
                     var ReturnResult = TempData["Return"] as string;
-                    var price = TempData["Price"];
                 }
 
                 @if (RentResult == "true")
@@ -52,10 +51,10 @@
                             <div class="container2">
                                 <h4>You returned the bike :)</h4>
 
-                                <h4>Total price was: <var>price</var> </h4> 
+                                <h4>Total price was: $@TempData["Price"]</h4> 
                             </div>
 
-                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">CLose</button>
+                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Close</button>
                         </div>
                     </div>
                 }
