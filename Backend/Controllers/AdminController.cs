@@ -11,7 +11,7 @@ namespace Backend.Controllers
 {
 
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private const double MissingBikeCharge = 500.0;
@@ -48,6 +48,7 @@ namespace Backend.Controllers
                     var rentals = rentalQuery.ToList();
                     data.Rentals = rentals;
                 }
+                ViewData["Report"] = "WEEKLY REPORT";
             }
             else
             {
@@ -61,6 +62,7 @@ namespace Backend.Controllers
                     var rentals = rentalQuery.ToList();
                     data.Rentals = rentals;
                 }
+                ViewData["Report"] = "PAST REPORTS";
             }
             
 
