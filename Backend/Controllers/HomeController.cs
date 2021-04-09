@@ -26,10 +26,9 @@ namespace Backend.Controllers
 
         public IActionResult Index()
         {
+            //ViewData["BIKE NUMBER"] = rent.BikeNumber;
+            //ViewData["TOTAL COST"] = rent.Price;
             ViewData["USER"] = User.Identity.Name;
-            ViewData["BIKE NUMBER"] = 0;//rent.BikeNumber;
-            ViewData["TOTAL COST"] = 0;// rent.Price;
-            //ViewData["Sucess"] = id;
             return View();
         }
 

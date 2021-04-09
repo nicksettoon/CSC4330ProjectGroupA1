@@ -29,13 +29,11 @@
                          style="height: 100vh;">
                         <a class="btn userOptionsBtn m-4" id="rentBtn" asp-area="Rent" asp-controller="Rent" asp-action="Rent">Rent Bike</a>
                         <a class="btn userOptionsBtn m-4" id="returnBtn" asp-area="Rent" asp-controller="Rent" asp-action="Return">Return Bike</a>
-
-                        <button class="btn btn-primary" onclick="document.getElementById('popUp').style.display='block'">Submit</button>
                     </div>
                 </div>
                 @{ var RentResult = TempData["Rent"] as string;
                     var ReturnResult = TempData["Return"] as string;
-                    var price = TempData["Price"];
+                    var price = TempData["Price"] as string;
                 }
 
                 @if (RentResult == "true")
@@ -71,13 +69,6 @@
     </div>
 
     <script>
-        document.getElementById('rentBtn').addEventListener("click", function () {
-            setRenting(true);
-        });
-        document.getElementById('returnBtn').addEventListener("click", function () {
-            setRenting(false);
-        });
-
         var modal = document.getElementById('popUp');
 
         window.onclick = function (event) {

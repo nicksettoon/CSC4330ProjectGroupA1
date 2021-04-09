@@ -99,6 +99,7 @@ h2 {
   font-weight: 700;
   font-size: 5.5vw;
   line-height: 1;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -148,11 +149,11 @@ h3 {
   height: 100%;
 }
 
-
-#adminOptions button{
+#adminOptions .btn{
   background-color: #0366d6;
   color: white;
   font-size: 2.7em;
+  width: 50%;
 }
 
 .userOptionsBtn {
@@ -165,38 +166,6 @@ h3 {
 
 footer, footer .container {
   background-color: transparent;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 2px solid #bfbfbf
-}
-
-th {
-    text-align: center;
-    padding: 8px;
-    border: 2px solid #bfbfbf;
-}
-
-td {
-  text-align: center;
-  padding: 8px;
-}
-
-tr:nth-child(odd) {
-  background-color: white;
-  color: black
-}
-
-tr:nth-child(even) {
-  background-color: #add9f0;
-  color: black
-}
-
-.tableContainer {
-  margin: 100px 25px;
 }
 
 #popUp, popUp2 {
