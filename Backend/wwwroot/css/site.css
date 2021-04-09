@@ -188,10 +188,11 @@ footer, footer .container {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: palevioletred; /*#fefefe; */
+    background-color: #fefefe;;
     margin: 5% auto 15% auto; /* 15% from the top and centered */
     border: 1px solid #888;
     width: 60%; /* Could be more or less, depending on screen size */
+    color: black;
 
     /*display: flex;
     flex-direction: column;

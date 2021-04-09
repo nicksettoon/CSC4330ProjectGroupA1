@@ -1,9 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@TempData["Rent"]
-@TempData["Return"]
-@TempData["Price"]
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -33,7 +30,6 @@
                 </div>
                 @{ var RentResult = TempData["Rent"] as string;
                     var ReturnResult = TempData["Return"] as string;
-                    var price = TempData["Price"] as string;
                 }
 
                 @if (RentResult == "true")
@@ -44,7 +40,7 @@
                                 <h4>You rented the bike :)</h4>
                             </div>
 
-                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Cancel</button>
+                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Close</button>
                         </div>
                     </div>
                 }
@@ -55,10 +51,10 @@
                             <div class="container2">
                                 <h4>You returned the bike :)</h4>
 
-                                <h4>Total price was: <var>price</var> </h4> 
+                                <h4>Total price was: $@TempData["Price"]</h4> 
                             </div>
 
-                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Cancel</button>
+                            <button type="button" onclick="document.getElementById('popUp').style.display='none'" class="cancelbtn">Close</button>
                         </div>
                     </div>
                 }
