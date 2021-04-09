@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Context;
-using Backend.Entities;
 
 namespace Backend.Controllers
 {
 
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private const double MissingBikeCharge = 500.0;
@@ -26,37 +23,48 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(Areas.Identity.Data.BackendUser profile)
+        public IActionResult Index()
         {
-            ViewData["USER"] = User.Identity.Name;
+            ViewData["USER"] =  User.Identity.Name;
             return View();
         }
 
-        public IActionResult NewReport()
+        public IActionResult Report(string id)
         {
             var data = new AdminModel();
 
             var userEmail = User.Identity.Name;
 
             data.CurrentUserEmail = userEmail;
-
-            using (var context = new DowlingContext())
+            if (id == "new")
             {
-                var monday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
+                using (var context = new DowlingContext())
+                {
+                    var monday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
 
-                var rentalQuery = from a in context.Rentals
-                                  where a.CheckOutTime.CompareTo(monday) >= 0 && a.CheckOutTime.CompareTo(DateTime.Now.AddDays(1)) <= 0
-                                  select a;
-                var rentals = rentalQuery.ToList();
-                data.Rentals = rentals;
+                    var rentalQuery = from a in context.Rentals
+                                        where a.CheckOutTime.CompareTo(monday) >= 0 && a.CheckOutTime.CompareTo(DateTime.Now.AddDays(1)) <= 0
+                                        select a;
+                    var rentals = rentalQuery.ToList();
+                    data.Rentals = rentals;
+                }
             }
+            else
+            {
+                using (var context = new DowlingContext())
+                {
+                    var monday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
 
-            return View("NewReport", data);
-        }
+                    var rentalQuery = from a in context.Rentals
+                                      where a.CheckOutTime.CompareTo(monday) <= 0
+                                      select a;
+                    var rentals = rentalQuery.ToList();
+                    data.Rentals = rentals;
+                }
+            }
+            
 
-        public IActionResult OldReport()
-        {
-            return View();
+            return View("Report", data);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -67,7 +75,7 @@ namespace Backend.Controllers
 
         public IActionResult MissingBike(string id)
         {
-            var bikeNumber = Int32.Parse(id);
+            var bikeNumber = int.Parse(id);
             using (var context = new DowlingContext())
             {
                 var rentalQuery = from a in context.Rentals

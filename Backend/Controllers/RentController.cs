@@ -30,7 +30,32 @@ namespace DowlingBikes
                 return View(data);
             }
 
-            public IActionResult Rent(RentModel data)
+            public IActionResult Rent()
+            {
+                var data = new RentModel()
+                {
+                    RentSuccessful = false,
+                    ReturnSuccessful = false,
+                    AlreadyCheckedOut = false
+
+                };
+
+                return View(data);
+            }
+            public IActionResult Return()
+            {
+                var data = new RentModel()
+                {
+                    RentSuccessful = false,
+                    ReturnSuccessful = false,
+                    AlreadyCheckedOut = false
+
+                };
+
+                return View(data);
+            }
+
+            public IActionResult RentFinished(RentModel data)
             {
                 data.CheckOut = DateTime.Now;
 
@@ -55,20 +80,23 @@ namespace DowlingBikes
                         bike.Rented = true;
                         data.AlreadyCheckedOut = false;
                         context.SaveChanges();
+                        TempData["Rent"] = "true";
                     }
                     else
                     {
                         data.AlreadyCheckedOut = true;
                         data.RentSuccessful = false;
+                        ViewData["Rent"] = "false";
+                        return View("Rent");
                     }
-                    
                     
                 }
 
-                return View("Index", data);
+                return RedirectToAction("Index", "Home");
+                //return View("../Home/Index", data);
             }
 
-            public IActionResult Return(RentModel data)
+            public IActionResult Returnfinished(RentModel data)
             {
                 data.CheckIn = DateTime.Now;
 
@@ -123,16 +151,21 @@ namespace DowlingBikes
 
                         bike.Rented = false;
 
+                        TempData["Return"] = "true";
+                        TempData["Price"] = price;
+
                         context.SaveChanges();
                     }
                     else
                     {
+                        TempData["Return"] = "false";
                         data.ReturnSuccessful = false;
                         Console.WriteLine("Return Failed");
                     }
                 }
 
-                return View("Index", data);
+                return RedirectToAction("Index", "Home");
+                //return View("../Home/Index", data);
             }
 
             private static double RoundHours(double hours)
