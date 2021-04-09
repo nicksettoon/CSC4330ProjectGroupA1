@@ -11,7 +11,7 @@ namespace Backend.Controllers
 {
 
 
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private const double MissingBikeCharge = 500.0;

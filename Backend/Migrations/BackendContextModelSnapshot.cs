@@ -48,8 +48,8 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6b65bf00-830a-4db3-80a9-d09d1277d360",
-                            ConcurrencyStamp = "82de6af2-288f-4375-9c93-bf19a27ad84f",
+                            Id = "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6",
+                            ConcurrencyStamp = "1406ba02-974f-46da-af09-208250a768c2",
                             Name = "Admin"
                         });
                 });
@@ -154,14 +154,14 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f80bb388-a288-4828-a5df-b17b3266002d",
+                            Id = "28712409-7ca2-4e8a-851f-cf67db2d28a9",
                             AccessFailedCount = 0,
                             Address = "1234 5th Ave",
                             BillingAddress = "1234 5th Ave, New York City, NY 10000",
                             CCNumber = "0000 8888 7777 6666",
                             CardHolderName = "Debbie Dowling",
                             City = "New York City",
-                            ConcurrencyStamp = "e06147a0-09b3-444a-96c6-9052eef33efe",
+                            ConcurrencyStamp = "9e27867b-0300-419d-ae7b-8b4fd7dc13a5",
                             Country = "US",
                             Email = "sric111@lsu.edu",
                             EmailConfirmed = true,
@@ -169,10 +169,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             Name = "Mr. Dowling",
                             NormalizedUserName = "sric111@lsu.edu",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGsn2v32QG9vBVABbhSB16RzPL3b1SLZnr8SeWfWvPKwLbecH+tbOQwmB9IHk55t/w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOfVUPwD15fxCtccRFY2r3WMETzmEC0f2c0bQan8KMxdGIOG1Tm5V3xdGk1szjVUgQ==",
                             PhoneNumberConfirmed = false,
                             SecurityNumber = 420,
-                            SecurityStamp = "b8196bfc-0d94-4b8a-aff1-0ca0a2336fca",
+                            SecurityStamp = "d4ba2919-737a-4f17-8140-8b1e2aab86a7",
                             State = "NY",
                             TwoFactorEnabled = false,
                             UserName = "sric111@lsu.edu",
@@ -197,8 +197,8 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "f80bb388-a288-4828-a5df-b17b3266002d",
-                            RoleId = "6b65bf00-830a-4db3-80a9-d09d1277d360"
+                            UserId = "28712409-7ca2-4e8a-851f-cf67db2d28a9",
+                            RoleId = "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6"
                         });
                 });
 
