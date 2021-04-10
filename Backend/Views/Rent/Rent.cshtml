@@ -9,7 +9,7 @@ ViewData["Title"] = "Rent";
             <div class="row bg-white p-3">
                 <h3>RENT A BIKE</h3>
             </div>
-            <div class="row pt-3 d-flex justify-content-center" id="rentPanel">
+            <div class="row pt-3 d-flex justify-content-center" style="background-color: #0079b4;" id="rentPanel">
                 <div class="col-6">
                     <h3 class="text-center text-uppercase text-white">Rental Costs</h3>
                     <table class="table table-small text-center text-white h5">
@@ -41,7 +41,6 @@ ViewData["Title"] = "Rent";
                                 <input asp-for="BikeNumber" class="form-control" />
                                 <span asp-validation-for="BikeNumber" class="text-danger"></span>
                             </div>
-                            <br />
                             <input type="submit" value="Submit" class="btn btn-primary" asp-area="Rent" asp-controller="Rent" asp-action="RentFinished"/>
                         </div>
                     </form>
