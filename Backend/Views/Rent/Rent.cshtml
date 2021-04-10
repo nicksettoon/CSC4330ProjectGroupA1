@@ -3,6 +3,10 @@
 ViewData["Title"] = "Rent";
 }
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
 <body id="rent">
     <div class="container">
         <main role="main" id="rentPanel">
@@ -41,25 +45,45 @@ ViewData["Title"] = "Rent";
                                 <input asp-for="BikeNumber" class="form-control" />
                                 <span asp-validation-for="BikeNumber" class="text-danger"></span>
                             </div>
-                            <input type="submit" value="Submit" class="btn btn-primary" asp-area="Rent" asp-controller="Rent" asp-action="RentFinished"/>
+                            <input type="submit" value="Submit" class="btn btn-primary" asp-area="Rent" asp-controller="Rent" asp-action="RentFinished" />
                         </div>
                     </form>
-                    <div>
-                        @{ var result = ViewData["Rent"] as string;
-                        }
-                        @if (result == "false")
-                        {
-                            <h2>The bike is already checked out :(</h2>
-                        }
-                    </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center pt-2">
-                <img src="../img/BIKE 2.png" class="img-fluid" style="max-width: 30%; height: auto;" />
+            <div class="row d-flex justify-content-center pt-2" id="behind">
+                <img src="../img/BIKE 2.png" class="img-fluid" style="max-width: 30%; height: auto; z-index: 1;" />
             </div>
+            @{ var result = ViewData["Rent"] as string;
+            }
+            @if (result == "false")
+            {
+                <div class="modal p-0" id="popUp" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content vw-50" id="error">
+                            <div class="modal-header border-bottom-0">
+                                <h4 class="modal-title">RENTAL FAILED!</h4>
+                                <button type="button" class="close" onclick="document.getElementById('popUp').style.display='none'" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                    <h5>The bike is already checked out :(</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </main>
     </div>
+    <script>
+        var modal = document.getElementById('popUp');
 
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 
