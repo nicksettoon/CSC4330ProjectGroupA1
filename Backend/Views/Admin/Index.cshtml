@@ -2,9 +2,21 @@
     ViewData["Title"] = "Admin";
 }
 
-<body id="home">
+<body>
     <div class="container">
         <main role="main">
+            <div class="row bg-white p-3">
+                <h2>ADMIN</h2>
+            </div>
+            <div class="row vw-100" style="height: 75vh;">
+                <div class="col-12 d-flex justify-content-between align-items-center align-self-center p-3 flex-column" id="adminOptions">
+                    <a class="btn m-4 text-uppercase" id="newReportBtn" asp-area="Admin" asp-controller="Admin" asp-action="Report">Generate Weekly Report</a>
+                    <a class="btn m-4 text-uppercase" id="oldReportBtn" asp-area="Admin" asp-controller="Admin" asp-action="Report">View Old Reports</a>
+                    <a class="btn m-4 text-uppercase" id="" asp-area="Admin" asp-controller="Admin" asp-action="Docks">View Docks</a>
+                </div>
+            </div>
+
+            @*
             <div class="row">
                 <div class="col-6" id="bikeUsePanel">
                     <div class="row p-4">
@@ -25,25 +37,8 @@
                         <a class="btn userOptionsBtn m-4" asp-area="Admin" asp-controller="Admin" asp-action="Report" asp-route-id="old">View Old Reports</a>
                     </div>
                 </div>
-                @*<div class="row align-items-center pr-3" id="landingBody">
-                        <div class="col-3"></div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input class="form-control" />
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input class="form-control" />
-                                <span class="text-danger"></span>
-                            </div>
-                            <p>New User? <a asp-area="Identity" asp-page="/Account/Register">Click Here</a></p>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
-                        <div id="bigBike" class="ml-auto p-4"></div>
-                    </div>*@
             </div>
+            *@
 
         </main>
     </div>
