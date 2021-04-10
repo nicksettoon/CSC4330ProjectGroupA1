@@ -5,11 +5,12 @@ ViewData["Title"] = "Rent";
 
 <body id="rent">
     <div class="container">
+        <!--RETURNING-->
         <main role="main" id="returnPanel">
-            <div class="row bg-white p-3">
+            <div class="row bg-white p-3" >
                 <h3>RETURN A BIKE</h3>
             </div>
-            <div class="row pt-3 d-flex justify-content-center">
+            <div class="row pt-3 d-flex justify-content-center" style="background-color: #0079b4;">
                 <div class="col-6">
                     <h3 class="text-center text-uppercase text-white">Rental Costs</h3>
                     <table class="table table-small text-center text-white h5">
@@ -33,38 +34,42 @@ ViewData["Title"] = "Rent";
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-4 h5 p-3">
-                    <form asp-controller="Rent" asp-action="Return" method="post">
-                        <div class="form text-center">
+                <div class="col-6 h5 p-3">
+                    <form asp-controller="Rent" asp-action="Return" method="post"
+                        class="ml-auto h-100 d-flex align-items-center">
+                        <div class="form text-center mx-auto d-flex flex-column justify-content-between col-8" style="height: 80%;">
                             <div class="form-group">
-                                <label asp-for="BikeNumber">Enter the ID Number of the bike you'd like to return:</label>
+                                <label asp-for="BikeNumber">Enter the ID Number of the bike you'd like to
+                                    return:</label>
                                 <input asp-for="BikeNumber" class="form-control" />
                                 <span asp-validation-for="BikeNumber" class="text-danger"></span>
                             </div>
-                            <br />
                             <div class="form-group">
-                                <label asp-for="BikeDamaged">Is the bike damaged?</label>
-                                <input asp-for="BikeDamaged" class="form-control" />
+                                <label for="BikeDamaged" asp-for="BikeDamaged">Is the bike damaged?:</label>
+                                <input type="checkbox" asp-for="BikeDamaged" id="BikeDamaged" name="BikeDamaged"/>
                                 <span asp-validation-for="BikeDamaged" class="text-danger"></span>
                             </div>
-                            <br />
                             <div class="form-group">
-                                <label asp-for="ReturnDock">Enter the dock that you returned the bike to:</label>
+                                <label asp-for="ReturnDock">Enter the dock number that you returned the bike to:</label>
                                 <input asp-for="ReturnDock" class="form-control" />
                                 <span asp-validation-for="ReturnDock" class="text-danger"></span>
                             </div>
-                            <br />
-                            <input type="submit" value="Submit" class="btn btn-primary" asp-area="Rent" asp-controller="Rent" asp-action="ReturnFinished" />
+                            <div>
+                                <input type="submit" value="Submit" class="btn btn-primary" asp-area="Rent" asp-controller="Rent" asp-action="ReturnFinished"/>
+                            </div>
                         </div>
                     </form>
-                    
                 </div>
-            </div>
-            <div class="row d-flex justify-content-center pt-2">
-                <img src="../img/BIKE 2.png" class="img-fluid" style="max-width: 29%; height: auto;" />
+                <div class="col-6 d-flex justify-content-center p-2">
+                    <img src="../img/BIKE 2.png" class="img-fluid" style="max-width: 85%; height: auto;" />
+                </div>
             </div>
         </main>
     </div>
+
+    <script>
+
+    </script>
 </body>
 
 @*
