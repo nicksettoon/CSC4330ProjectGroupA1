@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations.Dowling
 {
     [DbContext(typeof(DowlingContext))]
-    [Migration("20210409010752_Initial")]
-    partial class Initial
+    [Migration("20210411170634_Context")]
+    partial class Context
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
