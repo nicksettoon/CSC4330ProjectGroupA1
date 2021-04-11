@@ -34,25 +34,22 @@ ViewData["Title"] = "Rent";
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-4 h5 p-3">
-                    <form asp-controller="Rent" asp-action="Rent" method="post">
+                    <form asp-controller="Rent" asp-action="RentFinished" method="post">
                         <div class="form text-center">
+                            @if (!Model.RentSuccessful && Model.AlreadyCheckedOut)
+                            {
+                                <div class="text-danger">Invalid bike number or the bike is already checked out</div>
+                            }
+
                             <div class="form-group">
                                 <label asp-for="BikeNumber">Enter the ID number of the bike you'd like to rent:</label>
                                 <input asp-for="BikeNumber" class="form-control" />
                                 <span asp-validation-for="BikeNumber" class="text-danger"></span>
                             </div>
                             <br />
-                            <input type="submit" value="Submit" class="btn btn-primary" asp-area="Rent" asp-controller="Rent" asp-action="RentFinished"/>
+                            <input type="submit" value="Submit" class="btn btn-primary"/>
                         </div>
                     </form>
-                    <div>
-                        @{ var result = ViewData["Rent"] as string;
-                        }
-                        @if (result == "false")
-                        {
-                            <h2>The bike is already checked out :(</h2>
-                        }
-                    </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center pt-2">
