@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Backend.Migrations.Dowling
+namespace Backend.Migrations
 {
     [DbContext(typeof(DowlingContext))]
     partial class DowlingContextModelSnapshot : ModelSnapshot

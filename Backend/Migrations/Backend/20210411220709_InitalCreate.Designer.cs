@@ -4,14 +4,16 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Backend.Migrations
+namespace Backend.Migrations.Backend
 {
     [DbContext(typeof(BackendContext))]
-    partial class BackendContextModelSnapshot : ModelSnapshot
+    [Migration("20210411220709_InitalCreate")]
+    partial class InitalCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6",
-                            ConcurrencyStamp = "1406ba02-974f-46da-af09-208250a768c2",
+                            Id = "9b39c1cb-c36f-47fa-863c-9bd71c1d9a77",
+                            ConcurrencyStamp = "0c7366ae-646f-4cc6-9f51-8e4ee7f756e6",
                             Name = "Admin"
                         });
                 });
@@ -154,14 +156,14 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28712409-7ca2-4e8a-851f-cf67db2d28a9",
+                            Id = "652987ea-033c-4295-8f42-5933b8f17e15",
                             AccessFailedCount = 0,
                             Address = "1234 5th Ave",
                             BillingAddress = "1234 5th Ave, New York City, NY 10000",
                             CCNumber = "0000 8888 7777 6666",
                             CardHolderName = "Debbie Dowling",
                             City = "New York City",
-                            ConcurrencyStamp = "9e27867b-0300-419d-ae7b-8b4fd7dc13a5",
+                            ConcurrencyStamp = "80b04cf0-3a67-4949-b547-5700f6e8c38b",
                             Country = "US",
                             Email = "sric111@lsu.edu",
                             EmailConfirmed = true,
@@ -169,10 +171,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             Name = "Mr. Dowling",
                             NormalizedUserName = "sric111@lsu.edu",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOfVUPwD15fxCtccRFY2r3WMETzmEC0f2c0bQan8KMxdGIOG1Tm5V3xdGk1szjVUgQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF+j6h5IaYwGPuCWcx4Q85z+9py2jThckztFwxKE1LY220SkV4Fi22OXNkGo/eRpyQ==",
                             PhoneNumberConfirmed = false,
                             SecurityNumber = 420,
-                            SecurityStamp = "d4ba2919-737a-4f17-8140-8b1e2aab86a7",
+                            SecurityStamp = "862356a2-6d77-4fcc-a59d-26be731f16eb",
                             State = "NY",
                             TwoFactorEnabled = false,
                             UserName = "sric111@lsu.edu",
@@ -197,8 +199,8 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "28712409-7ca2-4e8a-851f-cf67db2d28a9",
-                            RoleId = "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6"
+                            UserId = "652987ea-033c-4295-8f42-5933b8f17e15",
+                            RoleId = "9b39c1cb-c36f-47fa-863c-9bd71c1d9a77"
                         });
                 });
 

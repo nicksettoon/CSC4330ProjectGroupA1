@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Backend.Migrations.Dowling
+namespace Backend.Migrations
 {
     [DbContext(typeof(DowlingContext))]
-    [Migration("20210409010752_Initial")]
-    partial class Initial
+    [Migration("20210411220641_InitalCreate")]
+    partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
