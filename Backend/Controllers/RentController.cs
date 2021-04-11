@@ -114,9 +114,6 @@ namespace DowlingBikes
             {
                 data.CheckIn = DateTime.Now;
 
-                /*ClaimsPrincipal currentUser = this.User;
-                var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;*/
-
                 var userEmail = User.Identity.Name;
 
                 using (var context = new DowlingContext())
@@ -153,10 +150,25 @@ namespace DowlingBikes
 
                         // Check In Handling
                         var entry = context.Entry(rental.First());
+
                         entry.Property(u => u.CheckInTime).CurrentValue = data.CheckIn;
 
+                        double price = 0.0;
                         // Price Handling
-                        var price = RoundHours((entry.Property(u => u.CheckInTime).CurrentValue - entry.Property(u => u.CheckOutTime).CurrentValue).TotalHours) * 9;
+                        var hours = (entry.Property(u => u.CheckInTime).CurrentValue - entry.Property(u => u.CheckOutTime).CurrentValue).TotalHours;
+                        var minutes = hours - Math.Truncate(hours);
+                        hours = Math.Truncate(hours);
+
+                        if (minutes < .5)
+                        {
+                            price += 5;
+                        }
+                        else
+                        {
+                            price += 9;
+                        }
+
+                        price += RoundHours(hours) * 9;
 
                         entry.Property(u => u.IsBikeDamaged).CurrentValue = data.BikeDamaged;
 
