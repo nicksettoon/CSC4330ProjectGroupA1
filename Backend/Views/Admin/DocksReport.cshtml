@@ -1,0 +1,62 @@
+﻿@model DockModel
+@{
+ViewData["Title"] = "Dock View";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+
+<body>
+    <div class="container d-flex vh-100">
+        <main role="main" class="d-flex w-100 flex-column">
+            <div class="row bg-white p-3 text-uppercase">
+                <h3>@ViewData["DocksReport"]</h3>
+            </div>
+            <div class="row flex-grow-1 overflow-auto">
+                <div class="col-3 d-flex justify-content-between align-items-center p-3 flex-column"
+                    style="background-color: #0366d6;">
+                    <form class="form my-auto text-center d-flex flex-column" method="POST">
+                        <div class="form-group">
+                            <label for="dockNum" class="h2 text-uppercase">Dock Number:</label>
+                            <input id="dockNum" asp-for="DockNumber" class="form-control" type="text">
+                            <button type="submit" class="btn btn-light m-3" asp-route-id="dockNum">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-9 d-flex justify-content-start p-3 flex-column h-100 mh-100">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="m-3" style="color: #0366d6;">DOCK <em>@Model.DockNumber</em></h3>
+                            <h4 class="m-3">TOTAL PROFIT: <em>@Model.TotalRevenue</em></h4>
+                        </div>
+                    </div>
+                    <div class="row overflow-auto m-3">
+                        <table class="table bg-white text-dark table-striped text-white">
+                            <thead class="thead-light">
+                                <th>Bike Number</th>
+                                <th>Time Used</th>
+                                <th>Last User's Email</th>
+                                <th>Last Check In Time</th>
+                                <th>Total</th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Rentals)
+                                {
+                                <tr>
+                                    <td>@item.BikeNumber</td>
+                                    <td>@item.CheckOutTime</td>
+                                    <td>@item.RenterEmail</td>
+                                    <td>@item.CheckInTime</td>
+                                    <td>@item.price</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>

@@ -65,7 +65,6 @@ namespace Backend.Controllers
                 ViewData["Report"] = "PAST REPORTS";
             }
 
-
             return View("Report", data);
         }
 
@@ -87,6 +86,7 @@ namespace Backend.Controllers
                 data.Rentals = rentals;
             }
 
+            ViewData["DocksReport"] = "Dock View";
             return View("DocksReport", data);
         }
 
