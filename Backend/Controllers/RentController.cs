@@ -52,6 +52,8 @@ namespace DowlingBikes
 
                 };
 
+                TempData["Return"] = "true";
+
                 return View(data);
             }
 
@@ -67,14 +69,26 @@ namespace DowlingBikes
                                  where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime())
                                  select a;
 
-                    var bike = (from a in context.Bikes
-                               where a.Id.Equals(data.BikeNumber)
-                               select a).First();
-
-
-
-                    if (!rental.Any() && bike != null)
+                    Bike bike = new Bike();
+                    try
                     {
+                        bike = (from a in context.Bikes
+                                    where a.Id.Equals(data.BikeNumber)
+                                    select a).First();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Error.WriteLine(e);
+                        data.AlreadyCheckedOut = true;
+                        data.RentSuccessful = false;
+                        ViewData["Rent"] = "false";
+                        return View("Rent", data);
+                    }
+
+                    if (!rental.Any())
+                    {
+                        
+
                         var bikeDock = bike.DockId;
                         context.Rentals.Add(new Rental() { CheckOutTime = data.CheckOut, BikeNumber = data.BikeNumber, RenterEmail = userEmail, RentDock = bikeDock });
                         bike.Rented = true;
@@ -87,7 +101,7 @@ namespace DowlingBikes
                         data.AlreadyCheckedOut = true;
                         data.RentSuccessful = false;
                         ViewData["Rent"] = "false";
-                        return View("Rent");
+                        return View("Rent", data);
                     }
                     
                 }
@@ -111,12 +125,32 @@ namespace DowlingBikes
                                  where a.BikeNumber.Equals(data.BikeNumber) && a.CheckInTime.Equals(new DateTime()) && a.RenterEmail.Equals(userEmail)
                                  select a;
 
-                    var bike = (from a in context.Bikes
+                    Bike bike = new Bike();
+                    Dock dock = new Dock();
+                    try
+                    {
+                        bike = (from a in context.Bikes
                                 where a.Id.Equals(data.BikeNumber)
                                 select a).First();
 
-                    if (rental.Any() && bike != null)
+                        dock = (from a in context.Docks
+                                where a.Id.Equals(data.ReturnDock)
+                                select a).First();
+
+                    }
+                    catch (Exception e)
                     {
+                        Console.Error.WriteLine(e);
+
+                        TempData["Return"] = "false";
+                        data.ReturnSuccessful = false;
+                        Console.WriteLine("Return Failed");
+                        return View("Return", data);
+                    }
+
+                    if (rental.Any())
+                    {
+
                         // Check In Handling
                         var entry = context.Entry(rental.First());
                         entry.Property(u => u.CheckInTime).CurrentValue = data.CheckIn;
@@ -161,6 +195,7 @@ namespace DowlingBikes
                         TempData["Return"] = "false";
                         data.ReturnSuccessful = false;
                         Console.WriteLine("Return Failed");
+                        return View("Return", data);
                     }
                 }
 

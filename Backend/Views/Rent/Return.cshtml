@@ -34,10 +34,13 @@ ViewData["Title"] = "Rent";
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-6 h5 p-3">
-                    <form asp-controller="Rent" asp-action="Return" method="post"
-                        class="ml-auto h-100 d-flex align-items-center">
-                        <div class="form text-center mx-auto d-flex flex-column justify-content-between col-8" style="height: 80%;">
+                <div class="col-4 h5 p-3">
+                    <form asp-controller="Rent" asp-action="ReturnFinished" method="post">
+                        <div class="form text-center">
+                            @if (!Model.RentSuccessful && TempData["Return"].Equals("false"))
+                            {
+                                <div class="text-danger">Invalid bike number or the bike is already checked out</div>
+                            }
                             <div class="form-group">
                                 <label asp-for="BikeNumber">Enter the ID Number of the bike you'd like to
                                     return:</label>
@@ -54,9 +57,8 @@ ViewData["Title"] = "Rent";
                                 <input asp-for="ReturnDock" class="form-control" />
                                 <span asp-validation-for="ReturnDock" class="text-danger"></span>
                             </div>
-                            <div>
-                                <input type="submit" value="Submit" class="btn btn-primary" asp-area="Rent" asp-controller="Rent" asp-action="ReturnFinished"/>
-                            </div>
+                            <br />
+                            <input type="submit" value="Submit" class="btn btn-primary"/>
                         </div>
                     </form>
                 </div>
