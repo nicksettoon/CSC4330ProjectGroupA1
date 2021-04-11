@@ -25,7 +25,7 @@ namespace Backend.Controllers
 
         public IActionResult Index()
         {
-            ViewData["USER"] =  User.Identity.Name;
+            ViewData["USER"] = User.Identity.Name;
             return View();
         }
 
@@ -43,8 +43,8 @@ namespace Backend.Controllers
                     var monday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
 
                     var rentalQuery = from a in context.Rentals
-                                        where a.CheckOutTime.CompareTo(monday) >= 0 && a.CheckOutTime.CompareTo(DateTime.Now.AddDays(1)) <= 0
-                                        select a;
+                                      where a.CheckOutTime.CompareTo(monday) >= 0 && a.CheckOutTime.CompareTo(DateTime.Now.AddDays(1)) <= 0
+                                      select a;
                     var rentals = rentalQuery.ToList();
                     data.Rentals = rentals;
                 }
@@ -64,9 +64,30 @@ namespace Backend.Controllers
                 }
                 ViewData["Report"] = "PAST REPORTS";
             }
-            
+
 
             return View("Report", data);
+        }
+
+        // TODO: 
+        // Method that gets the rentals for the current dock.
+        // Should set up a button and a view for this action.
+        public IActionResult DocksReport(DockModel data)
+        {
+            using (var context = new DowlingContext())
+            {
+                var rentalQuery = from a in context.Rentals
+                                  where a.RentDock == data.DockNumber
+                                  select a;
+                var rentals = rentalQuery.ToList();
+                foreach (var item in rentals)
+                {
+                    data.TotalRevenue += item.Price;
+                }
+                data.Rentals = rentals;
+            }
+
+            return View("DocksReport", data);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -97,7 +118,7 @@ namespace Backend.Controllers
 
                 context.SaveChanges();
             }
-                return View("Index");
+            return View("Index");
         }
     }
 }
