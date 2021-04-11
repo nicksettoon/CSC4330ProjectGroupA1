@@ -81,7 +81,7 @@ namespace DowlingBikes
                         Console.Error.WriteLine(e);
                         data.AlreadyCheckedOut = true;
                         data.RentSuccessful = false;
-                        ViewData["Rent"] = "false";
+                        ViewData["Rent"] = "Invalid";
                         return View("Rent", data);
                     }
 
@@ -139,7 +139,7 @@ namespace DowlingBikes
                     {
                         Console.Error.WriteLine(e);
 
-                        TempData["Return"] = "false";
+                        ViewData["Return"] = "false";
                         data.ReturnSuccessful = false;
                         Console.WriteLine("Return Failed");
                         return View("Return", data);
@@ -204,7 +204,7 @@ namespace DowlingBikes
                     }
                     else
                     {
-                        TempData["Return"] = "false";
+                        ViewData["Return"] = "false";
                         data.ReturnSuccessful = false;
                         Console.WriteLine("Return Failed");
                         return View("Return", data);

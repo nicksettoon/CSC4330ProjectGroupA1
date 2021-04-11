@@ -15,12 +15,12 @@ ViewData["Title"] = "Home Page";
                         <h3 class="text-white">Hi, @ViewData["USER"]</h3>
                     </div>
                     <div class="row justify-content-center">
-                        <p class="w-100">Current Bike Number: <br> @ViewData["BIKE NUMBER"] </p>
-                        <div class="w-100 d-flex justify-content-center p-5">
-                            <img class="img-fluid;" style="max-width: 60%;" src="../img/BIKE 2.png">
+@*                        <p class="w-100">Current Bike Number: <br> @ViewData["BIKE NUMBER"] </p>
+*@                        <div class="w-100 d-flex justify-content-center p-5">
+                            <img class="img-fluid;" style="max-width: 80%;" src="../img/BIKE 2.png">
                         </div>
-                        <p class="w-100" style="padding-bottom: 10%; ">Current Charge: <br> @ViewData["TOTAL COST"] </p>
-                    </div>
+@*                        <p class="w-100" style="padding-bottom: 10%; ">Current Charge: <br> @ViewData["TOTAL COST"] </p>
+*@                    </div>
                 </div>
                 <div class="col-md-6" id="userOptionsPanel">
                     <div class="row justify-content-center align-items-center flex-column flex-wrap"
@@ -31,28 +31,23 @@ ViewData["Title"] = "Home Page";
                             asp-action="Return">Return Bike</a>
                     </div>
                 </div>
-                @{ var RentResult = TempData["Rent"] as string;
-                var ReturnResult = TempData["Return"] as string;
+                @{  var RentResult = TempData["Rent"] as string;
+                    var ReturnResult = TempData["Return"] as string;
                 }
 
                 @if (RentResult == "true")
                 {
                 <div class="modal p-0" id="popUp" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Rental Success!</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div class="modal-content" id="success">
+                            <div class="modal-header  border-bottom-0">
+                                <h4 class="modal-title">RENTAL SUCCESSFUL!</h4>
+                                <button type="button" class="close" onclick="document.getElementById('popUp').style.display='none'" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Enjoy your ride!</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary"
-                                    onclick="document.getElementById('popUp').style.display='none'"
-                                    data-dismiss="modal">Close</button>
+                                <h5>Enjoy your ride!</h5>
                             </div>
                         </div>
                     </div>
@@ -75,20 +70,15 @@ ViewData["Title"] = "Home Page";
 
                 <div class="modal p-0" id="popUp" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Return Success!</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div class="modal-content" id="success">
+                            <div class="modal-header border-bottom-0">
+                                <h4 class="modal-title">RETURN SUCCESSFUL!</h4>
+                                <button type="button" class="close" onclick="document.getElementById('popUp').style.display='none'" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Thank you for your service! <br> Your total: $@TempData["Price"]</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary"
-                                    onclick="document.getElementById('popUp').style.display='none'"
-                                    data-dismiss="modal">Close</button>
+                                <h5>Thank you for your service! <br> Your total: $@TempData["Price"]</h5>
                             </div>
                         </div>
                     </div>

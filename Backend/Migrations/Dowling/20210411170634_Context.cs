@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations.Dowling
 {
-    public partial class Initial : Migration
+    public partial class Context : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
