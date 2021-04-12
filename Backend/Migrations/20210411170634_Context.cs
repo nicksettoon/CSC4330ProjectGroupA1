@@ -1,9 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Backend.Migrations.Dowling
+namespace Backend.Migrations
 {
+<<<<<<< HEAD:Backend/Migrations/20210411170634_Context.cs
     public partial class Context : Migration
+=======
+    public partial class InitalCreate : Migration
+>>>>>>> _janiece:Backend/Migrations/20210411220641_InitalCreate.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
