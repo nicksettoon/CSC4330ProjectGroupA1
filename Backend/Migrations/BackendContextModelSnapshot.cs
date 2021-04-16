@@ -4,16 +4,14 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(BackendContext))]
-    [Migration("20210409201353_Initial")]
-    partial class Initial
+    partial class BackendContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +48,8 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6",
-                            ConcurrencyStamp = "1406ba02-974f-46da-af09-208250a768c2",
+                            Id = "fe36ac07-10bf-43df-b7a7-24b564f37a53",
+                            ConcurrencyStamp = "ebc6e1bf-b58a-4060-8060-cd3a2ff3eaae",
                             Name = "Admin"
                         });
                 });
@@ -156,14 +154,14 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28712409-7ca2-4e8a-851f-cf67db2d28a9",
+                            Id = "f57c1aba-1a6a-42a3-b66e-561fffd9435b",
                             AccessFailedCount = 0,
                             Address = "1234 5th Ave",
                             BillingAddress = "1234 5th Ave, New York City, NY 10000",
                             CCNumber = "0000 8888 7777 6666",
                             CardHolderName = "Debbie Dowling",
                             City = "New York City",
-                            ConcurrencyStamp = "9e27867b-0300-419d-ae7b-8b4fd7dc13a5",
+                            ConcurrencyStamp = "74ba6063-db7c-4672-9fa6-ca9d32300a18",
                             Country = "US",
                             Email = "sric111@lsu.edu",
                             EmailConfirmed = true,
@@ -171,14 +169,40 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             Name = "Mr. Dowling",
                             NormalizedUserName = "sric111@lsu.edu",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOfVUPwD15fxCtccRFY2r3WMETzmEC0f2c0bQan8KMxdGIOG1Tm5V3xdGk1szjVUgQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELtPjuphMt+tMKLVSsTRbHqKHbEKxsDmXRMeS60AhxckXUwxeJTV/IzyHPKGf/kBjQ==",
                             PhoneNumberConfirmed = false,
                             SecurityNumber = 420,
-                            SecurityStamp = "d4ba2919-737a-4f17-8140-8b1e2aab86a7",
+                            SecurityStamp = "88d7c355-867c-4b4b-b1c7-7d446f3ac010",
                             State = "NY",
                             TwoFactorEnabled = false,
                             UserName = "sric111@lsu.edu",
                             ZipCode = "10000"
+                        },
+                        new
+                        {
+                            Id = "b05881c3-ad82-4a64-9d6e-a01904b9b84d",
+                            AccessFailedCount = 0,
+                            Address = "123 Rat St",
+                            BillingAddress = "123 Rat St",
+                            CCNumber = "0000 8888 7777 6666",
+                            CardHolderName = "Seth Richard",
+                            City = "Rat City",
+                            ConcurrencyStamp = "f6d78690-ccd4-42be-82a2-a0521ff3d9c4",
+                            Country = "US",
+                            Email = "holden@lsu.edu",
+                            EmailConfirmed = true,
+                            ExpDate = "09/21",
+                            LockoutEnabled = false,
+                            Name = "Seth Richard",
+                            NormalizedUserName = "holden@lsu.edu",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI1qu07HqhPoiTNGyhNAkN+/sITsRWe+U7qLUzABZLY08xmutMWjpJ14LSlhVnJ3dQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityNumber = 420,
+                            SecurityStamp = "0b638e69-1e2f-4c9b-b1e8-c3041b96c331",
+                            State = "RI",
+                            TwoFactorEnabled = false,
+                            UserName = "holden@lsu.edu",
+                            ZipCode = "42069"
                         });
                 });
 
@@ -199,8 +223,8 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "28712409-7ca2-4e8a-851f-cf67db2d28a9",
-                            RoleId = "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6"
+                            UserId = "f57c1aba-1a6a-42a3-b66e-561fffd9435b",
+                            RoleId = "fe36ac07-10bf-43df-b7a7-24b564f37a53"
                         });
                 });
 

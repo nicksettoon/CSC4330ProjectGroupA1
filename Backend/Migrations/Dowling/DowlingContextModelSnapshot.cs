@@ -3,21 +3,14 @@ using System;
 using Backend.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Backend.Migrations
+namespace Backend.Migrations.Dowling
 {
     [DbContext(typeof(DowlingContext))]
-<<<<<<< HEAD:Backend/Migrations/20210411170634_Context.Designer.cs
-    [Migration("20210411170634_Context")]
-    partial class Context
-=======
-    [Migration("20210411220641_InitalCreate")]
-    partial class InitalCreate
->>>>>>> _janiece:Backend/Migrations/20210411220641_InitalCreate.Designer.cs
+    partial class DowlingContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -88,10 +88,29 @@ namespace Backend.Data
                     Country = "US",
                     ZipCode = "10000",
                     EmailConfirmed = true
+                },
+                new BackendUser
+                {
+                    Email = "holden@lsu.edu",
+                    UserName = "holden@lsu.edu",
+                    NormalizedUserName = StringNormalizationExtensions.Normalize("holden@lsu.edu"),
+                    Name = "Seth Richard",
+                    CardHolderName = "Seth Richard",
+                    CCNumber = "0000 8888 7777 6666",
+                    ExpDate = "09/21",
+                    SecurityNumber = 420,
+                    BillingAddress = "123 Rat St",
+                    Address = "123 Rat St",
+                    State = "RI",
+                    City = "Rat City",
+                    Country = "US",
+                    ZipCode = "42069",
+                    EmailConfirmed = true
                 }
             };
 
             users[0].PasswordHash = new PasswordHasher<BackendUser>().HashPassword(users[0], "Superrat3#");
+            users[1].PasswordHash = new PasswordHasher<BackendUser>().HashPassword(users[0], "Superrat3#");
 
             var userRoles = new[]
             {

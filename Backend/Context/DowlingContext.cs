@@ -15,9 +15,6 @@ namespace Backend.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<Dock>()
-                .HasMany(d => d.Bikes)
-                .WithOne(b => b.Dock);*/
 
             modelBuilder.Entity<Bike>()
                 .HasOne(b => b.Dock)

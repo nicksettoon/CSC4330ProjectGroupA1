@@ -57,7 +57,7 @@ namespace Backend.Controllers
                     var monday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
 
                     var rentalQuery = from a in context.Rentals
-                                      where a.CheckOutTime.CompareTo(monday) <= 0
+                                      where a.CheckOutTime.CompareTo(monday.AddDays(1)) <= 0
                                       select a;
                     var rentals = rentalQuery.ToList();
                     data.Rentals = rentals;

@@ -166,17 +166,22 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6", "1406ba02-974f-46da-af09-208250a768c2", "Admin", null });
+                values: new object[] { "fe36ac07-10bf-43df-b7a7-24b564f37a53", "ebc6e1bf-b58a-4060-8060-cd3a2ff3eaae", "Admin", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "BillingAddress", "CCNumber", "CardHolderName", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "ExpDate", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityNumber", "SecurityStamp", "State", "TwoFactorEnabled", "UserName", "ZipCode" },
-                values: new object[] { "28712409-7ca2-4e8a-851f-cf67db2d28a9", 0, "1234 5th Ave", "1234 5th Ave, New York City, NY 10000", "0000 8888 7777 6666", "Debbie Dowling", "New York City", "9e27867b-0300-419d-ae7b-8b4fd7dc13a5", "US", "sric111@lsu.edu", true, "09/21", false, null, "Mr. Dowling", null, "sric111@lsu.edu", "AQAAAAEAACcQAAAAEOfVUPwD15fxCtccRFY2r3WMETzmEC0f2c0bQan8KMxdGIOG1Tm5V3xdGk1szjVUgQ==", null, false, 420, "d4ba2919-737a-4f17-8140-8b1e2aab86a7", "NY", false, "sric111@lsu.edu", "10000" });
+                values: new object[] { "f57c1aba-1a6a-42a3-b66e-561fffd9435b", 0, "1234 5th Ave", "1234 5th Ave, New York City, NY 10000", "0000 8888 7777 6666", "Debbie Dowling", "New York City", "74ba6063-db7c-4672-9fa6-ca9d32300a18", "US", "sric111@lsu.edu", true, "09/21", false, null, "Mr. Dowling", null, "sric111@lsu.edu", "AQAAAAEAACcQAAAAELtPjuphMt+tMKLVSsTRbHqKHbEKxsDmXRMeS60AhxckXUwxeJTV/IzyHPKGf/kBjQ==", null, false, 420, "88d7c355-867c-4b4b-b1c7-7d446f3ac010", "NY", false, "sric111@lsu.edu", "10000" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "BillingAddress", "CCNumber", "CardHolderName", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "ExpDate", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityNumber", "SecurityStamp", "State", "TwoFactorEnabled", "UserName", "ZipCode" },
+                values: new object[] { "b05881c3-ad82-4a64-9d6e-a01904b9b84d", 0, "123 Rat St", "123 Rat St", "0000 8888 7777 6666", "Seth Richard", "Rat City", "f6d78690-ccd4-42be-82a2-a0521ff3d9c4", "US", "holden@lsu.edu", true, "09/21", false, null, "Seth Richard", null, "holden@lsu.edu", "AQAAAAEAACcQAAAAEI1qu07HqhPoiTNGyhNAkN+/sITsRWe+U7qLUzABZLY08xmutMWjpJ14LSlhVnJ3dQ==", null, false, 420, "0b638e69-1e2f-4c9b-b1e8-c3041b96c331", "RI", false, "holden@lsu.edu", "42069" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "d64a2d4f-8bb1-43e1-80cb-aa98b410e8e6", "28712409-7ca2-4e8a-851f-cf67db2d28a9" });
+                values: new object[] { "fe36ac07-10bf-43df-b7a7-24b564f37a53", "f57c1aba-1a6a-42a3-b66e-561fffd9435b" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
